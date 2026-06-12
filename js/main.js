@@ -61,4 +61,5 @@ const MAIN = {
   }
 };
 
-document.addEventListener("DOMContentLoaded", MAIN.boot);
+if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", MAIN.boot);
+else MAIN.boot();

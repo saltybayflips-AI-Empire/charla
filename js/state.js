@@ -15,7 +15,8 @@ const ST = {
   CHEST_GEMS: 25,
   LEAGUES: ["Bronze", "Silver", "Gold", "Sapphire", "Ruby", "Emerald", "Amethyst", "Pearl", "Obsidian", "Diamond"],
   LEAGUE_EMOJI: ["🥉", "🥈", "🥇", "🔷", "🔴", "🟢", "🟣", "⚪", "⚫", "💎"],
-  PROMOTE: 10, DEMOTE_FROM: 25, LEAGUE_SIZE: 30,
+  PROMOTE_BY_TIER: [20, 15, 10, 7, 7, 7, 7, 7, 5, 0], DEMOTE_FROM: 25, LEAGUE_SIZE: 30,
+  promoteN(tier) { return ST.PROMOTE_BY_TIER[tier] || 0; },
 
   s: null,
 
@@ -221,7 +222,7 @@ const ST = {
       const standings = ST.leagueStandings(lg.week, lg.tier, lg.xp, 7 * 24);
       const rank = standings.findIndex(r => r.me) + 1;
       let moved = "stay";
-      if (rank > 0 && rank <= ST.PROMOTE && lg.tier < ST.LEAGUES.length - 1) { lg.tier++; moved = "up"; }
+      if (rank > 0 && rank <= ST.promoteN(lg.tier) && lg.tier < ST.LEAGUES.length - 1) { lg.tier++; moved = "up"; }
       else if (rank > ST.DEMOTE_FROM && lg.tier > 0) { lg.tier--; moved = "down"; }
       lg.best = Math.max(lg.best, lg.tier);
       lg.history.push({ week: lg.week, rank, tier: lg.tier, moved });

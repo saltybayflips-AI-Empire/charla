@@ -123,16 +123,18 @@ const SC = {
       el.innerHTML =
         "<h2 style='margin:6px 0 4px'>" + ST.LEAGUES[lg.tier] + " League</h2>" +
         '<div class="shield-row">' + shields + "</div>" +
-        '<div class="hero">' + U.parrot(110) + "<p><b>Earn XP this week to join the league!</b><br>Top " + ST.PROMOTE + " of " + ST.LEAGUE_SIZE + " move up. Bottom 5 move down.</p>" +
+        '<div class="hero">' + U.parrot(110) + "<p><b>Earn XP this week to join the league!</b><br>Top " + ST.promoteN(lg.tier) + " of " + ST.LEAGUE_SIZE + " move up. Bottom 5 move down.</p>" +
         '<button class="btn btn-green" id="lg-go" style="max-width:260px;margin-top:10px">Start a lesson</button></div>';
       U.$("#lg-go").onclick = () => MAIN.go("learn");
       return;
     }
     const rows = ST.leagueStandings(lg.week, lg.tier, lg.xp);
     let list = "";
+    const promoN = ST.promoteN(lg.tier);
     rows.forEach((r, i) => {
       const rank = i + 1;
-      if (rank === 1) list += '<div class="zone-lab up">PROMOTION ZONE ↑</div>';
+      if (rank === 1 && promoN > 0) list += '<div class="zone-lab up">PROMOTION ZONE ↑</div>';
+      if (rank === promoN + 1 && promoN > 0) list += '<div class="zone-lab" style="color:var(--muted)">— STAY ZONE —</div>';
       if (rank === ST.DEMOTE_FROM + 1) list += '<div class="zone-lab down">DEMOTION ZONE ↓</div>';
       list +=
         '<div class="lg-row' + (r.me ? " me" : "") + '">' +
@@ -144,7 +146,7 @@ const SC = {
     el.innerHTML =
       "<h2 style='margin:6px 0 4px'>" + ST.LEAGUES[lg.tier] + " League</h2>" +
       '<div class="shield-row">' + shields + "</div>" +
-      "<p style='text-align:center;color:#777;margin:0 0 12px'>Top " + ST.PROMOTE + " advance · ends in <b>" + U.fmtCountdown(U.msToWeekEnd()) + "</b></p>" +
+      "<p style='text-align:center;color:#777;margin:0 0 12px'>" + (promoN > 0 ? "Top " + promoN + " advance" : "Top of the mountain") + " · ends in <b>" + U.fmtCountdown(U.msToWeekEnd()) + "</b></p>" +
       list;
   },
 
