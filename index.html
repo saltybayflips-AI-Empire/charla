@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Charla — Learn Spanish</title>
+<meta name="description" content="Charla — a free, friendly way to learn Spanish. Bite-size lessons, streaks, leagues and stories.">
+<meta name="theme-color" content="#58cc02">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32.png">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Charla">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<noscript>Charla needs JavaScript to run.</noscript>
+
+<div id="app">
+  <header id="topbar">
+    <button class="stat" id="stat-flag" title="Spanish">🇪🇸</button>
+    <button class="stat stat-streak" id="stat-streak">🔥 <b>0</b></button>
+    <button class="stat stat-gems" id="stat-gems">💎 <b>0</b></button>
+    <button class="stat stat-hearts" id="stat-hearts">❤️ <b>5</b></button>
+  </header>
+
+  <main id="screens">
+    <section id="scr-learn" class="screen"></section>
+    <section id="scr-practice" class="screen hidden"></section>
+    <section id="scr-leagues" class="screen hidden"></section>
+    <section id="scr-quests" class="screen hidden"></section>
+    <section id="scr-shop" class="screen hidden"></section>
+    <section id="scr-profile" class="screen hidden"></section>
+  </main>
+
+  <div id="install-tip" class="hidden">
+    <div class="it-card">
+      <span class="it-emoji">📲</span>
+      <div>Install Charla: tap <b>Share</b> <span class="it-share">⬆️</span> then <b>Add to Home Screen</b></div>
+      <button id="it-close">✕</button>
+    </div>
+  </div>
+
+  <nav id="tabbar">
+    <button class="tab active" data-tab="learn" aria-label="Learn">🏠</button>
+    <button class="tab" data-tab="practice" aria-label="Practice">🏋️</button>
+    <button class="tab" data-tab="leagues" aria-label="Leagues">🛡️</button>
+    <button class="tab" data-tab="quests" aria-label="Quests">🎯</button>
+    <button class="tab" data-tab="shop" aria-label="Shop">🛍️</button>
+    <button class="tab" data-tab="profile" aria-label="Profile">👤</button>
+  </nav>
+</div>
+
+<div id="lesson-root"></div>
+<div id="modal-root"></div>
+<div id="toast-root"></div>
+
+<script src="course-data-1.js"></script>
+<script src="course-data-2.js"></script>
+<script src="stories-data.js"></script>
+<script src="js/util.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/state.js"></script>
+<script src="js/exgen.js"></script>
+<script src="js/lesson.js"></script>
+<script src="js/path.js"></script>
+<script src="js/screens.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
