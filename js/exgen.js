@@ -95,7 +95,7 @@ const EX = {
       else if (ty === "tr-ef") specs.push({ t: "tr", u: u.id, si, dir: "ef" });
       else if (ty === "lt") specs.push(AU.ttsOK() ? { t: "lt", u: u.id, si } : { t: "tr", u: u.id, si, dir: "fe" });
       else if (ty === "th") {
-        if (k === 4 && AU.srOK && ST.s.settings.speak) specs.push({ t: "sp", u: u.id, si });
+        if (k === 4 && AU.speakAllowed()) specs.push({ t: "sp", u: u.id, si });
         else specs.push(AU.ttsOK() ? { t: "th", u: u.id, si } : { t: "tr", u: u.id, si, dir: "ef" });
       }
       else specs.push({ t: "fb", u: u.id, si });

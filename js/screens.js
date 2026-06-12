@@ -278,11 +278,12 @@ const SC = {
       '<div class="card">' +
       '<div class="set-row"><span>🔔 Sound effects</span><button class="switch ' + (ST.s.settings.sound ? "on" : "") + '" id="set-sound"></button></div>' +
       '<div class="set-row"><span>🎤 Speaking exercises</span><button class="switch ' + (ST.s.settings.speak ? "on" : "") + '" id="set-speak"></button></div>' +
+      '<div class="set-row"><span>💬 Send feedback</span><a class="btn btn-white small" style="text-decoration:none" href="mailto:khalilgio@gmail.com?subject=Charla%20feedback%20(v' + MAIN.VERSION + ')">Email</a></div>' +
       '<div class="set-row"><span>💾 Backup progress</span><button class="btn btn-white small" id="set-backup">Copy</button></div>' +
       '<div class="set-row"><span>📥 Restore backup</span><button class="btn btn-white small" id="set-restore">Paste</button></div>' +
       '<div class="set-row"><span style="color:var(--red)">⚠️ Reset all progress</span><button class="btn btn-red small" id="set-reset">Reset</button></div>' +
       "</div>" +
-      '<p style="text-align:center;color:#bbb;font-size:12px;margin-top:18px">Charla v1 — an original learning app made with Claude for Khalil 🦜<br>Not affiliated with any other language app.</p>';
+      '<p style="text-align:center;color:#bbb;font-size:12px;margin-top:18px">Charla v' + MAIN.VERSION + ' — an original learning app made with Claude for Khalil 🦜<br>Not affiliated with any other language app.</p>';
     U.$("#pf-av").onclick = () => {
       const opts = ["🧑", "👨", "👩", "🧔", "👨‍🦱", "👱", "🦜", "🐱", "🐶", "🦊", "🐼", "😎"];
       const cur = opts.indexOf(ST.s.avatar);

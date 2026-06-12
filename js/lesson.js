@@ -34,6 +34,13 @@ const LS = {
       checked: false,
       evalFn: null
     };
+    ST.saveResume(LS.cur);
+    LS.shell();
+    LS.renderEx();
+  },
+
+  restore(saved) {
+    LS.cur = Object.assign(saved, { checked: false, evalFn: null });
     LS.shell();
     LS.renderEx();
   },
@@ -140,7 +147,7 @@ const LS = {
     c.evalFn = null;
     LS.updateHead();
     if (c.pos >= c.queue.length) LS.finish();
-    else LS.renderEx();
+    else { ST.saveResume(c); LS.renderEx(); }
   },
 
   confirmQuit() {
@@ -155,6 +162,7 @@ const LS = {
 
   close() {
     LS.cur = null;
+    ST.clearResume();
     U.$("#lesson-root").innerHTML = "";
     SC.renderHeader();
     PT.render();
@@ -200,12 +208,13 @@ const LS = {
       if (LS.suspended) {
         const s = LS.suspended; LS.suspended = null;
         U.toast("❤️ +1 heart — back to your lesson!");
-        LS.cur = s; LS.shell(); LS.renderEx();
+        LS.cur = s; ST.saveResume(s); LS.shell(); LS.renderEx();
         return;
       }
       LS.close();
       return;
     }
+    ST.clearResume();
     const perfect = c.wrong === 0;
     let xp = c.o.baseXp;
     if (perfect && (c.o.kind === "lesson" || c.o.kind === "review")) xp += ST.PERFECT_BONUS;
@@ -292,7 +301,9 @@ const LS = {
       case "mc": LS.exMultiChoice(body, r); break;
       case "img": LS.exImage(body, r); break;
       case "pairs": LS.exPairs(body, r); break;
-      case "sp": LS.exSpeak(body, r); break;
+      case "sp":
+        if (!AU.speakAllowed()) { c.queue[c.pos] = { t: "tr", u: spec.u, si: spec.si, dir: "ef" }; LS.renderEx(); return; }
+        LS.exSpeak(body, r); break;
       default: LS.onContinue(true); return;
     }
     LS.updateHead();
@@ -556,15 +567,33 @@ const LS = {
       '<div class="mic-wrap"><button class="mic-btn" id="mic">🎤</button>' +
       '<div class="mic-heard" id="heard"></div></div>';
     const mic = U.$("#mic"), heard = U.$("#heard");
-    const stopRec = () => { if (rec) { try { rec.stop(); } catch (e) { } rec = null; } mic.classList.remove("rec"); };
+    let watchdog = null;
+    const stopRec = () => { clearTimeout(watchdog); if (rec) { try { rec.stop(); } catch (e) { } rec = null; } mic.classList.remove("rec"); };
+    const failOnce = (msg) => {
+      fails++;
+      if (fails >= 2) {
+        finished = true; c.checked = true;
+        c.combo = 0; c.wrong++;
+        AU.sfx("wrong");
+        LS.footFeedback(false, U.esc(sent.es));
+      } else heard.textContent = msg;
+    };
     mic.onclick = () => {
       if (finished) return;
       if (rec) { stopRec(); return; }
       mic.classList.add("rec");
       heard.textContent = "Listening…";
+      watchdog = setTimeout(() => {
+        if (finished) return;
+        const r0 = rec; rec = null;
+        if (r0) { r0.onresult = r0.onerror = r0.onend = null; try { r0.stop(); } catch (e) { } }
+        mic.classList.remove("rec");
+        failOnce("Mic timed out — tap to try again, or skip below");
+      }, 8000);
       rec = AU.listen(
         (txt) => { heard.textContent = "“" + txt + "”"; },
         (finalTxt) => {
+          clearTimeout(watchdog);
           mic.classList.remove("rec"); rec = null;
           if (finished) return;
           if (finalTxt && EX.checkSpeech(finalTxt, sent.es)) {
@@ -572,15 +601,7 @@ const LS = {
             c.combo++; c.comboMax = Math.max(c.comboMax, c.combo);
             AU.sfx("correct");
             LS.footFeedback(true, null, "");
-          } else {
-            fails++;
-            if (fails >= 2) {
-              finished = true; c.checked = true;
-              c.combo = 0; c.wrong++;
-              AU.sfx("wrong");
-              LS.footFeedback(false, U.esc(sent.es));
-            } else heard.textContent = "Hmm, try again — speak clearly 🎤";
-          }
+          } else failOnce("Hmm, try again — speak clearly 🎤");
         });
     };
     const f = U.$("#ls-foot");

@@ -39,9 +39,20 @@ const ST = {
       stories: {},
       stats: { lessons: 0, perfect: 0, listens: 0, storiesDone: 0, timeMs: 0 },
       settings: { sound: true, speak: true },
-      flags: { installDismissed: false, welcomed: false }
+      flags: { installDismissed: false, welcomed: false },
+      resume: null
     };
   },
+
+  saveResume(sess) {
+    if (!sess || sess.o.kind === "recover") return;
+    ST.s.resume = {
+      o: sess.o, queue: sess.queue, pos: sess.pos, done: sess.done, wrong: sess.wrong,
+      combo: sess.combo, comboMax: sess.comboMax, requeues: sess.requeues, lives: sess.lives, t0: sess.t0
+    };
+    ST.save();
+  },
+  clearResume() { if (ST.s.resume) { ST.s.resume = null; ST.save(); } },
 
   load() {
     let s = null;

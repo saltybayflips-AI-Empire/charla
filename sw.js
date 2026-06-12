@@ -1,5 +1,6 @@
-/* Charla service worker — offline-first */
-const VER = "charla-v1";
+/* Charla service worker — offline-first, separate long-lived audio cache */
+const VER = "charla-v2";
+const AUDIO_CACHE = "charla-audio-v1";
 const ASSETS = [
   "./",
   "./index.html",
@@ -8,6 +9,7 @@ const ASSETS = [
   "./course-data-1.js",
   "./course-data-2.js",
   "./stories-data.js",
+  "./audio-map.js",
   "./js/util.js",
   "./js/audio.js",
   "./js/state.js",
@@ -30,18 +32,31 @@ self.addEventListener("install", e => {
 self.addEventListener("activate", e => {
   e.waitUntil(
     caches.keys()
-      .then(keys => Promise.all(keys.filter(k => k !== VER).map(k => caches.delete(k))))
+      .then(keys => Promise.all(keys.filter(k => k !== VER && k !== AUDIO_CACHE).map(k => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });
 
 self.addEventListener("fetch", e => {
   if (e.request.method !== "GET") return;
+  const url = new URL(e.request.url);
+  // audio clips: cache-first into a cache that survives app version bumps
+  if (url.origin === location.origin && url.pathname.includes("/audio/")) {
+    e.respondWith(
+      caches.open(AUDIO_CACHE).then(c =>
+        c.match(e.request).then(hit => hit || fetch(e.request).then(res => {
+          if (res.ok) c.put(e.request, res.clone());
+          return res;
+        }))
+      )
+    );
+    return;
+  }
   e.respondWith(
     caches.match(e.request, { ignoreSearch: true }).then(hit => {
       if (hit) return hit;
       return fetch(e.request).then(res => {
-        if (res.ok && new URL(e.request.url).origin === location.origin) {
+        if (res.ok && url.origin === location.origin) {
           const copy = res.clone();
           caches.open(VER).then(c => c.put(e.request, copy));
         }

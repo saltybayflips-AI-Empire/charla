@@ -2,7 +2,12 @@
 const AU = {
   ctx: null,
   voice: null,
+  player: null,
   srOK: !!(window.SpeechRecognition || window.webkitSpeechRecognition),
+  IOS: /iphone|ipad|ipod/i.test(navigator.userAgent),
+
+  // speaking exercises: speech recognition hangs in iOS home-screen apps — never serve them there
+  speakAllowed() { return AU.srOK && !AU.IOS && ST.s.settings.speak; },
 
   init() {
     // voices load async (esp. iOS)
@@ -22,6 +27,26 @@ const AU = {
   ttsOK() { return !!window.speechSynthesis; },
 
   say(text, slow) {
+    const src = window.AUDIO_MAP ? AUDIO_MAP[String(text).trim()] : null;
+    if (src) {
+      try {
+        if (window.speechSynthesis) speechSynthesis.cancel();
+        if (!AU.player) AU.player = new Audio();
+        const p = AU.player;
+        p.pause();
+        p.src = src;
+        p.playbackRate = slow ? 0.65 : 1.0;
+        if ("preservesPitch" in p) p.preservesPitch = true;
+        else if ("webkitPreservesPitch" in p) p.webkitPreservesPitch = true;
+        p.onerror = () => AU.sayTTS(text, slow);
+        p.play().catch(() => AU.sayTTS(text, slow));
+        return;
+      } catch (e) { /* fall through to TTS */ }
+    }
+    AU.sayTTS(text, slow);
+  },
+
+  sayTTS(text, slow) {
     if (!window.speechSynthesis) return;
     try {
       speechSynthesis.cancel();
