@@ -10,13 +10,14 @@ const AU = {
   speakAllowed() { return AU.srOK && !AU.IOS && ST.s.settings.speak; },
 
   init() {
-    // voices load async (esp. iOS)
+    // voices load async (esp. iOS); pick a voice for the active language
     const pick = () => {
+      const def = window.LANG ? LANG.def() : { tts: "es-MX", voicePref: [] };
+      const base = def.tts.slice(0, 2).toLowerCase();
       const vs = window.speechSynthesis ? speechSynthesis.getVoices() : [];
-      const es = vs.filter(v => (v.lang || "").toLowerCase().startsWith("es"));
-      if (!es.length) return;
-      const pref = ["mónica", "monica", "paulina", "sabina", "helena", "google español", "español"];
-      AU.voice = es.find(v => pref.some(p => v.name.toLowerCase().includes(p))) || es[0];
+      const cand = vs.filter(v => (v.lang || "").toLowerCase().startsWith(base));
+      if (!cand.length) { AU.voice = null; return; }
+      AU.voice = cand.find(v => def.voicePref.some(p => v.name.toLowerCase().includes(p))) || cand[0];
     };
     pick();
     if (window.speechSynthesis && speechSynthesis.onvoiceschanged !== undefined) {
@@ -52,7 +53,7 @@ const AU = {
       speechSynthesis.cancel();
       const u = new SpeechSynthesisUtterance(text);
       if (AU.voice) { u.voice = AU.voice; u.lang = AU.voice.lang; }
-      else u.lang = "es-MX";
+      else u.lang = window.LANG ? LANG.def().tts : "es-MX";
       u.rate = slow ? 0.55 : 0.95;
       u.pitch = 1.05;
       speechSynthesis.speak(u);
@@ -99,7 +100,7 @@ const AU = {
     const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SR) { onEnd && onEnd(); return null; }
     const r = new SR();
-    r.lang = "es-MX"; r.interimResults = true; r.maxAlternatives = 3;
+    r.lang = window.LANG ? LANG.def().tts : "es-MX"; r.interimResults = true; r.maxAlternatives = 3;
     let final = "";
     r.onresult = e => {
       let txt = "";

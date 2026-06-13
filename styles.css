@@ -330,3 +330,42 @@ b { font-weight: 800; }
 .hero h1 { font-size: 28px; margin: 10px 0 4px; color: var(--green-d); }
 .hero p { color: #777; margin: 0 0 4px; }
 .parrot { width: 120px; height: 120px; }
+
+/* ============ Hints ============ */
+.hint-btn {
+  display: block; margin: 0 auto 12px; border: 2px solid var(--gold); background: #fff8e0;
+  color: var(--gold-d); font-weight: 800; font-size: 14px; font-family: inherit;
+  padding: 8px 16px; border-radius: 12px; cursor: pointer;
+}
+.hint-btn:active { transform: translateY(1px); }
+/* vocabulary breakdown (hint modal) */
+.gloss { text-align: left; margin: 6px 0 4px; }
+.gl-row { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--line); }
+.gl-t { font-weight: 800; color: var(--text); }
+.gl-e { margin-left: auto; color: #777; font-size: 14px; text-align: right; }
+.why-box {
+  text-align: left; background: var(--blue-l); border-radius: 12px; padding: 10px 12px;
+  margin: 10px 0 4px; font-size: 14px; color: #2b6b8c; line-height: 1.4;
+}
+.why-box b { color: var(--blue-d); }
+/* wrong-answer "what you wrote" diff */
+.fb-you { color: var(--red-d); font-size: 15px; margin: 2px 0 8px; }
+.d-bad { text-decoration: line-through; opacity: .75; }
+.d-add { color: var(--green-d); }
+.ls-foot.bad .why-box { background: #fff; }
+
+/* ============ Language picker ============ */
+.lang-list { display: flex; flex-direction: column; gap: 10px; margin: 12px 0 6px; text-align: left; }
+.lang-card {
+  display: flex; align-items: center; gap: 12px; width: 100%; font-family: inherit; cursor: pointer;
+  border: 2px solid var(--line); background: #fff; border-radius: 16px; padding: 12px 14px;
+}
+.lang-card.cur { border-color: var(--green); background: var(--green-l); }
+.lang-card.soon { opacity: .5; cursor: default; }
+.lang-card:not(.soon):active { transform: translateY(1px); }
+.lc-flag { font-size: 30px; }
+.lc-name { display: flex; flex-direction: column; line-height: 1.15; }
+.lc-name b { font-size: 16px; }
+.lc-name small { color: #999; font-size: 13px; }
+.lc-tag { margin-left: auto; font-size: 11px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase; color: var(--green-d); }
+.lc-tag.soon { color: var(--muted); }

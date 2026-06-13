@@ -12,7 +12,39 @@ const SC = {
     U.$("#stat-streak").onclick = () => SC.streakModal();
     U.$("#stat-gems").onclick = () => MAIN.go("shop");
     U.$("#stat-hearts").onclick = () => SC.heartsModal();
-    U.$("#stat-flag").onclick = () => U.toast("🇪🇸 Spanish course — ¡vamos!");
+    U.$("#stat-flag").innerHTML = window.LANG ? LANG.flag() : "🇪🇸";
+    U.$("#stat-flag").onclick = () => SC.langModal();
+  },
+
+  /* ---------- language picker ---------- */
+  langModal(firstRun) {
+    if (!window.LANG) return;
+    const avail = LANG.availableCodes();
+    let cards = "";
+    LANG.ORDER.forEach(code => {
+      const def = LANG.DEFS[code];
+      const ready = avail.includes(code);
+      const cur = code === LANG.active;
+      cards +=
+        '<button class="lang-card' + (cur ? " cur" : "") + (ready ? "" : " soon") + '" ' +
+        (ready ? 'data-lang="' + code + '"' : "disabled") + '>' +
+        '<span class="lc-flag">' + def.flag + "</span>" +
+        '<span class="lc-name"><b>' + def.name + "</b><small>" + def.natName + "</small></span>" +
+        (cur ? '<span class="lc-tag">Current</span>' : (ready ? "" : '<span class="lc-tag soon">Soon</span>')) +
+        "</button>";
+    });
+    const m = U.modal(
+      '<div class="m-em">🌍</div><h3>' + (firstRun ? "Pick a language to learn" : "Switch language") + "</h3>" +
+      (firstRun ? "<p>You can change this any time from the flag in the top bar.</p>" : "<p>Each language keeps its own streak and progress.</p>") +
+      '<div class="lang-list">' + cards + "</div>" +
+      (firstRun ? "" : '<button class="btn btn-ghost" id="lm-x" style="margin-top:6px">Close</button>'),
+      { sticky: firstRun });
+    U.$$("[data-lang]", m.el).forEach(b => b.onclick = () => {
+      const code = b.getAttribute("data-lang");
+      if (code === LANG.active) { m.close(); return; }
+      LANG.set(code); // reloads
+    });
+    const x = U.$("#lm-x"); if (x) x.onclick = m.close;
   },
 
   streakModal() {
@@ -265,7 +297,7 @@ const SC = {
       '<div style="text-align:center;padding:10px 0 4px">' +
       '<button id="pf-av" style="font-size:64px;background:var(--blue-l);border:2px solid #84d8ff;border-radius:50%;width:110px;height:110px;cursor:pointer">' + ST.s.avatar + "</button>" +
       '<h2 style="margin:10px 0 2px">' + U.esc(ST.s.name) + ' <button id="pf-name" style="border:0;background:none;cursor:pointer">✏️</button></h2>' +
-      '<div style="color:#777">Learning Spanish 🇪🇸 · joined ' + joined + "</div></div>" +
+      '<div style="color:#777">Learning ' + (window.LANG ? U.esc(LANG.name()) + " " + LANG.flag() : "Spanish 🇪🇸") + ' · joined ' + joined + "</div></div>" +
       '<div class="stat-tiles">' +
       '<div class="stile"><span style="font-size:26px">🔥</span><div><div class="v">' + ST.s.streak.n + '</div><div class="k">Day streak</div></div></div>' +
       '<div class="stile"><span style="font-size:26px">⚡</span><div><div class="v">' + ST.s.xp.total + '</div><div class="k">Total XP</div></div></div>' +

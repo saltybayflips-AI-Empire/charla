@@ -1,0 +1,48 @@
+[
+  {
+    "id": "fr_st1",
+    "title": "Au café",
+    "emoji": "☕",
+    "unit": "u3",
+    "xp": 22,
+    "lines": [
+      { "type": "narr", "es": "Marie entre dans un café.", "en": "Marie walks into a café." },
+      { "type": "say", "speaker": "Le serveur", "avatar": "🧑‍🍳", "es": "Bonjour ! Comment allez-vous ?", "en": "Hello! How are you?" },
+      { "type": "say", "speaker": "Marie", "avatar": "👩", "es": "Je vais bien, merci.", "en": "I am well, thank you." },
+      { "type": "say", "speaker": "Le serveur", "avatar": "🧑‍🍳", "es": "Voici le menu.", "en": "Here is the menu." },
+      { "type": "q", "prompt": "Where is Marie?", "choices": ["At a café", "At home", "At school"], "answer": 0 },
+      { "type": "say", "speaker": "Marie", "avatar": "👩", "es": "Je voudrais un café, s'il vous plaît.", "en": "I would like a coffee, please." },
+      { "type": "say", "speaker": "Le serveur", "avatar": "🧑‍🍳", "es": "Avec du sucre ?", "en": "With sugar?" },
+      { "type": "say", "speaker": "Marie", "avatar": "👩", "es": "Oui, et un jus d'orange aussi.", "en": "Yes, and an orange juice too." },
+      { "type": "q", "prompt": "What does Marie order to drink?", "choices": ["A tea", "A water", "A coffee and an orange juice"], "answer": 2 },
+      { "type": "narr", "es": "Le serveur apporte le café.", "en": "The waiter brings the coffee." },
+      { "type": "say", "speaker": "Marie", "avatar": "👩", "es": "Le café est très bon ! Merci.", "en": "The coffee is very good! Thank you." },
+      { "type": "say", "speaker": "Marie", "avatar": "👩", "es": "L'addition, s'il vous plaît.", "en": "The check, please." },
+      { "type": "q", "prompt": "What does Marie ask for at the end?", "choices": ["The check", "The menu", "More sugar"], "answer": 0 },
+      { "type": "say", "speaker": "Le serveur", "avatar": "🧑‍🍳", "es": "Au revoir, à bientôt !", "en": "Goodbye, see you later!" }
+    ]
+  },
+  {
+    "id": "fr_st2",
+    "title": "L'anniversaire",
+    "emoji": "🎂",
+    "unit": "u5",
+    "xp": 23,
+    "lines": [
+      { "type": "narr", "es": "Aujourd'hui, c'est l'anniversaire de Léa.", "en": "Today is Léa's birthday." },
+      { "type": "say", "speaker": "Paul", "avatar": "👦", "es": "Bonjour Léa ! Bon anniversaire !", "en": "Hello Léa! Happy birthday!" },
+      { "type": "say", "speaker": "Léa", "avatar": "👧", "es": "Merci beaucoup, Paul !", "en": "Thank you very much, Paul!" },
+      { "type": "say", "speaker": "Paul", "avatar": "👦", "es": "Tu as quel âge aujourd'hui ?", "en": "How old are you today?" },
+      { "type": "q", "prompt": "What is special about today?", "choices": ["It is Léa's birthday", "It is a holiday", "It is a school day"], "answer": 0 },
+      { "type": "say", "speaker": "Léa", "avatar": "👧", "es": "J'ai dix ans aujourd'hui.", "en": "I am ten years old today." },
+      { "type": "say", "speaker": "Paul", "avatar": "👦", "es": "Et ton frère ? Il a quel âge ?", "en": "And your brother? How old is he?" },
+      { "type": "say", "speaker": "Léa", "avatar": "👧", "es": "Mon frère a cinq ans.", "en": "My brother is five years old." },
+      { "type": "q", "prompt": "How old is Léa today?", "choices": ["Five", "Ten", "Three"], "answer": 1 },
+      { "type": "narr", "es": "La famille mange un grand gâteau.", "en": "The family eats a big cake." },
+      { "type": "say", "speaker": "Léa", "avatar": "👧", "es": "Le gâteau est très bon !", "en": "The cake is very good!" },
+      { "type": "say", "speaker": "Paul", "avatar": "👦", "es": "Combien d'amis sont ici ?", "en": "How many friends are here?" },
+      { "type": "q", "prompt": "What does the family eat?", "choices": ["Bread", "Apples", "A big cake"], "answer": 2 },
+      { "type": "say", "speaker": "Léa", "avatar": "👧", "es": "Merci à tous ! À bientôt !", "en": "Thank you everyone! See you later!" }
+    ]
+  }
+]

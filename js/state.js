@@ -1,6 +1,7 @@
 /* Charla — game state, economy, streaks, quests, leagues, achievements (global ST) */
 const ST = {
-  KEY: "charla-state-v1",
+  KEY: "charla-state-es", // set per active language in ST.load()
+  LEGACY_KEY: "charla-state-v1",
   HEART_MAX: 5,
   HEART_REGEN_MS: 4 * 3600 * 1000,
   REFILL_COST: 350,
@@ -55,8 +56,22 @@ const ST = {
   clearResume() { if (ST.s.resume) { ST.s.resume = null; ST.save(); } },
 
   load() {
+    // progress is per language: charla-state-<code>
+    ST.KEY = (window.LANG ? LANG.stateKey() : "charla-state-es");
     let s = null;
     try { s = JSON.parse(localStorage.getItem(ST.KEY)); } catch (e) { }
+    // one-time migration: original single-course progress → Spanish bucket.
+    // also pin existing learners to Spanish so the first-run picker doesn't nag them.
+    if (!s && ST.KEY === "charla-state-es") {
+      try {
+        const legacy = localStorage.getItem(ST.LEGACY_KEY);
+        if (legacy) {
+          s = JSON.parse(legacy);
+          localStorage.setItem(ST.KEY, legacy);
+          if (!localStorage.getItem("charla-lang")) localStorage.setItem("charla-lang", "es");
+        }
+      } catch (e) { }
+    }
     const d = ST.defaults();
     ST.s = s ? Object.assign(d, s) : d;
     // deep-merge guard for new sub-keys

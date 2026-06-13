@@ -1,5 +1,5 @@
 /* Charla service worker — offline-first, separate long-lived audio cache */
-const VER = "charla-v2";
+const VER = "charla-v3";
 const AUDIO_CACHE = "charla-audio-v1";
 const ASSETS = [
   "./",
@@ -10,7 +10,20 @@ const ASSETS = [
   "./course-data-2.js",
   "./stories-data.js",
   "./audio-map.js",
+  "./data/fr/course.js",
+  "./data/fr/stories.js",
+  "./data/fr/audio-map.js",
+  "./data/de/course.js",
+  "./data/de/stories.js",
+  "./data/de/audio-map.js",
+  "./data/it/course.js",
+  "./data/it/stories.js",
+  "./data/it/audio-map.js",
+  "./data/pt/course.js",
+  "./data/pt/stories.js",
+  "./data/pt/audio-map.js",
   "./js/util.js",
+  "./js/lang.js",
   "./js/audio.js",
   "./js/state.js",
   "./js/exgen.js",

@@ -3,18 +3,22 @@ const LS = {
   cur: null,
   suspended: null,
 
-  PRAISE: ["Nice!", "Excellent!", "¡Muy bien!", "Great job!", "¡Perfecto!", "You got it!", "Awesome!"],
-  TITLES: {
-    tr_fe: "Translate this sentence",
-    tr_ef: "Translate into Spanish",
-    lt: "Tap what you hear",
-    th: "Type what you hear",
-    fb: "Fill in the blank",
-    mc_fe: "What does this mean?",
-    mc_ef: "How do you say this in Spanish?",
-    img: "Select the correct image",
-    pairs: "Match the pairs",
-    sp: "Say this sentence"
+  PRAISE: ["Nice!", "Excellent!", "Great job!", "Perfect!", "You got it!", "Awesome!", "Well done!"],
+  TITLES: {},
+  initTitles() {
+    const L = window.LANG ? LANG.name() : "Spanish";
+    LS.TITLES = {
+      tr_fe: "Translate this sentence",
+      tr_ef: "Translate into " + L,
+      lt: "Tap what you hear",
+      th: "Type what you hear",
+      fb: "Fill in the blank",
+      mc_fe: "What does this mean?",
+      mc_ef: "How do you say this in " + L + "?",
+      img: "Select the correct image",
+      pairs: "Match the pairs",
+      sp: "Say this sentence"
+    };
   },
 
   start(opts) {
@@ -75,26 +79,97 @@ const LS = {
   footCheck(enabled, extraHtml) {
     const f = U.$("#ls-foot");
     f.className = "ls-foot";
-    f.innerHTML = (extraHtml || "") + '<button class="btn btn-green" id="ls-check" ' + (enabled ? "" : "disabled") + ">Check</button>";
-    const b = U.$("#ls-check");
-    b.onclick = () => LS.onCheck();
+    const hint = LS.hintAvailable() ? '<button class="hint-btn" id="ls-hint">💡 Hint</button>' : "";
+    f.innerHTML = hint + (extraHtml || "") + '<button class="btn btn-green" id="ls-check" ' + (enabled ? "" : "disabled") + ">Check</button>";
+    U.$("#ls-check").onclick = () => LS.onCheck();
+    const hb = U.$("#ls-hint");
+    if (hb) hb.onclick = () => LS.showHint();
   },
   ready(on) {
     const b = U.$("#ls-check");
     if (b) b.disabled = !on;
   },
-  footFeedback(ok, solutionHtml, noteHtml) {
+  // ok | solutionHtml (string) | noteHtml (correct-answer note) | detailHtml (wrong-answer what/why)
+  footFeedback(ok, solutionHtml, noteHtml, detailHtml) {
     const c = LS.cur;
     const f = U.$("#ls-foot");
     f.className = "ls-foot " + (ok ? "ok" : "bad");
     let head = ok
       ? '<div class="fb-head">✔︎ ' + U.pick(LS.PRAISE) + (c.combo >= 5 ? ' <span class="combo">' + c.combo + " in a row!</span>" : "") + "</div>"
-      : '<div class="fb-head">✖︎ Incorrect</div>';
+      : '<div class="fb-head">✖︎ Not quite</div>';
     f.innerHTML = head +
       (noteHtml ? '<div class="fb-note">' + noteHtml + "</div>" : "") +
       (!ok && solutionHtml ? '<div class="fb-sol"><b>Correct solution:</b> ' + solutionHtml + "</div>" : "") +
+      (!ok && detailHtml ? detailHtml : "") +
       '<button class="btn ' + (ok ? "btn-green" : "btn-red") + '" id="ls-cont">Continue</button>';
     U.$("#ls-cont").onclick = () => LS.onContinue(ok);
+  },
+
+  /* ---------- hints (free help, on demand) ---------- */
+  // which exercise types get a hint button
+  hintAvailable() {
+    const c = LS.cur; if (!c) return false;
+    const spec = c.queue[c.pos];
+    return spec && ["tr", "lt", "th", "fb", "mc", "img"].includes(spec.t);
+  },
+
+  showHint() {
+    const c = LS.cur; if (!c) return;
+    const spec = c.queue[c.pos];
+    const r = EX.resolve(spec);
+    AU.sfx("click");
+    let html = '<div class="m-em">💡</div><h3>Hint</h3>';
+
+    if (spec.t === "mc" || spec.t === "img") {
+      const w = r.word;
+      html += '<p>The word <b>' + U.esc(spec.t === "img" ? w.en : (spec.dir === "fe" ? w.es : w.en)) + "</b> means "
+        + "<b>" + U.esc(spec.t === "img" ? w.es : (spec.dir === "fe" ? w.en : w.es)) + "</b>.</p>"
+        + '<p style="color:#777;font-size:13px">Tip: rule out the options you already know to narrow it down.</p>';
+    } else {
+      // sentence exercises: show a vocabulary breakdown + grammar tip
+      const sent = r.sent;
+      const targetText = sent.es; // listening / "into target" answers are in the target language
+      const showSource = spec.t === "tr" && spec.dir === "fe"; // they can already see the target; gloss it
+      const glossText = showSource ? sent.es : targetText;
+      html += LS.glossHtml(glossText);
+      const why = EX.whyFor(r.u, sent);
+      if (why) html += '<div class="why-box"><b>Grammar:</b> ' + U.esc(why) + "</div>";
+      if (spec.t === "lt" || spec.t === "th")
+        html += '<p style="color:#777;font-size:13px;margin-top:8px">Listen again, then match what you hear to these words.</p>';
+    }
+    html += '<button class="btn btn-green" id="hint-x" style="margin-top:14px">Got it</button>';
+    const m = U.modal(html);
+    U.$$("[data-say]", m.el).forEach(b => b.onclick = () => AU.say(b.getAttribute("data-say")));
+    U.$("#hint-x").onclick = m.close;
+  },
+
+  // chunked vocabulary breakdown of a target-language phrase
+  glossHtml(text) {
+    const parts = EX.gloss(text);
+    let rows = "";
+    parts.forEach(([chunk, mean]) => {
+      rows += '<div class="gl-row"><button class="spk" style="font-size:14px;padding:5px 8px" data-say="' + U.esc(chunk) + '">🔊</button>' +
+        '<span class="gl-t">' + U.esc(chunk) + "</span>" +
+        '<span class="gl-e">' + (mean ? U.esc(mean) : "…") + "</span></div>";
+    });
+    return '<div class="gloss">' + rows + "</div>";
+  },
+
+  // build the "what went wrong" + "why" block for a missed answer
+  wrongDetail(spec, res) {
+    const r = EX.resolve(spec);
+    let html = "";
+    // what: diff the learner's answer against the solution (sentence answers only)
+    if (res && res.you !== undefined && res.solutionText) {
+      const d = EX.answerDiffHtml(res.you, res.solutionText);
+      if (d.youHtml) html += '<div class="fb-you"><b>You wrote:</b> ' + d.youHtml + "</div>";
+    }
+    // why: grammar reason (sentence-based exercises)
+    if (r.sent) {
+      const why = EX.whyFor(r.u, r.sent);
+      if (why) html += '<div class="why-box"><b>Why:</b> ' + U.esc(why) + "</div>";
+    }
+    return html;
   },
 
   /* ---------- check / continue ---------- */
@@ -123,6 +198,7 @@ const LS = {
       AU.sfx("wrong");
       if (spec.wi !== undefined) ST.wordRec(spec.u + ":" + spec.wi, false);
       if (!spec.fromMistakes) ST.pushMistake(spec);
+      const detail = LS.wrongDetail(spec, res);
       // requeue (cap)
       if (c.requeues < 6) { c.queue.push(Object.assign({}, spec)); c.requeues++; }
       if (c.o.kind === "legendary") {
@@ -133,9 +209,9 @@ const LS = {
         ST.loseHeart();
         LS.updateHead();
         SC.renderHeader();
-        if (ST.hearts() <= 0) { LS.footFeedback(false, res.solution || "", ""); LS.outOfHearts(); return; }
+        if (ST.hearts() <= 0) { LS.footFeedback(false, res.solution || "", "", detail); LS.outOfHearts(); return; }
       }
-      LS.footFeedback(false, res.solution || "");
+      LS.footFeedback(false, res.solution || "", "", detail);
     }
   },
 
@@ -357,7 +433,7 @@ const LS = {
     LS.footCheck(false);
     c.evalFn = () => {
       const ok = EX.checkTokens(azTokens(), tgt, alts);
-      return { ok, solution: U.esc(tgt) };
+      return { ok, solution: U.esc(tgt), solutionText: tgt, you: azTokens().join(" ") };
     };
     if (spec.dir === "fe") LS.bindSpeakers(body, src);
   },
@@ -376,7 +452,7 @@ const LS = {
     LS.footCheck(false);
     c.evalFn = () => {
       const res = EX.checkTyped(ty.value, tgt, alts);
-      return { ok: res.ok, accents: res.accents, typo: res.typo, solution: U.esc(tgt) };
+      return { ok: res.ok, accents: res.accents, typo: res.typo, solution: U.esc(tgt), solutionText: tgt, you: ty.value };
     };
     if (spec.dir === "fe") LS.bindSpeakers(body, src);
     setTimeout(() => ty.focus(), 200);
@@ -409,7 +485,7 @@ const LS = {
       bank.appendChild(b);
     });
     LS.footCheck(false);
-    c.evalFn = () => ({ ok: EX.checkTokens(azTokens(), sent.es, sent.altEs || []), solution: U.esc(sent.es) });
+    c.evalFn = () => ({ ok: EX.checkTokens(azTokens(), sent.es, sent.altEs || []), solution: U.esc(sent.es), solutionText: sent.es, you: azTokens().join(" ") });
     LS.bindSpeakers(body, sent.es);
   },
 
@@ -426,7 +502,7 @@ const LS = {
     LS.footCheck(false);
     c.evalFn = () => {
       const res = EX.checkTyped(ty.value, sent.es, sent.altEs || []);
-      return { ok: res.ok, accents: res.accents, typo: res.typo, solution: U.esc(sent.es) };
+      return { ok: res.ok, accents: res.accents, typo: res.typo, solution: U.esc(sent.es), solutionText: sent.es, you: ty.value };
     };
     LS.bindSpeakers(body, sent.es);
   },

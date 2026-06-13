@@ -1,0 +1,223 @@
+{
+  "code": "fr",
+  "func": {
+    "le": "the (masc.)",
+    "la": "the (fem.)",
+    "les": "the (plural)",
+    "l'": "the",
+    "un": "a (masc.)",
+    "une": "a (fem.)",
+    "des": "some",
+    "je": "I",
+    "tu": "you",
+    "il": "he",
+    "elle": "she",
+    "on": "we / one",
+    "nous": "we",
+    "vous": "you (formal/plural)",
+    "ils": "they (masc.)",
+    "elles": "they (fem.)",
+    "suis": "am",
+    "es": "are (you)",
+    "est": "is",
+    "sommes": "are (we)",
+    "êtes": "are (you formal)",
+    "sont": "are (they)",
+    "ai": "have (I)",
+    "as": "have (you)",
+    "a": "has",
+    "avons": "have (we)",
+    "avez": "have (you formal)",
+    "ont": "have (they)",
+    "et": "and",
+    "ou": "or",
+    "mais": "but",
+    "de": "of / from",
+    "à": "to / at",
+    "avec": "with",
+    "pour": "for",
+    "dans": "in",
+    "sur": "on",
+    "sans": "without",
+    "oui": "yes",
+    "non": "no",
+    "très": "very",
+    "aussi": "also / too"
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "title": "First steps",
+      "color": "#58cc02",
+      "units": [
+        {
+          "id": "u1",
+          "title": "Basics",
+          "subtitle": "People, food and your first words",
+          "tip": "French nouns have a gender: masculine words take 'le' and feminine words take 'la' ('le pain', 'la femme'). The verb être (to be) changes form: 'je suis' (I am), 'tu es' (you are), 'il/elle est' (he/she is).",
+          "words": [
+            { "es": "l'homme", "en": "the man", "emoji": "👨" },
+            { "es": "la femme", "en": "the woman", "emoji": "👩" },
+            { "es": "le garçon", "en": "the boy", "emoji": "👦" },
+            { "es": "la fille", "en": "the girl", "emoji": "👧" },
+            { "es": "l'eau", "en": "the water", "emoji": "💧" },
+            { "es": "le pain", "en": "the bread", "emoji": "🍞" },
+            { "es": "la pomme", "en": "the apple", "emoji": "🍎" },
+            { "es": "le lait", "en": "the milk", "emoji": "🥛" },
+            { "es": "je", "en": "I" },
+            { "es": "tu", "en": "you" },
+            { "es": "oui", "en": "yes" },
+            { "es": "non", "en": "no" }
+          ],
+          "sentences": [
+            { "es": "Je suis un homme.", "en": "I am a man.", "altEn": ["I'm a man."], "altEs": [] },
+            { "es": "Tu es une femme.", "en": "You are a woman.", "altEn": ["You're a woman."], "altEs": [] },
+            { "es": "Le garçon mange du pain.", "en": "The boy eats bread.", "altEn": ["The boy is eating bread."], "altEs": [] },
+            { "es": "La fille a une pomme.", "en": "The girl has an apple.", "altEn": [], "altEs": [] },
+            { "es": "Je voudrais de l'eau.", "en": "I would like some water.", "altEn": ["I'd like water.", "I want water."], "altEs": [] },
+            { "es": "C'est le lait.", "en": "It is the milk.", "altEn": ["It's the milk.", "This is the milk."], "altEs": [] },
+            { "es": "Oui, je suis une fille.", "en": "Yes, I am a girl.", "altEn": ["Yes, I'm a girl."], "altEs": [] },
+            { "es": "Non, je ne mange pas de pain.", "en": "No, I do not eat bread.", "altEn": ["No, I don't eat bread."], "altEs": [] },
+            { "es": "L'homme et la femme.", "en": "The man and the woman.", "altEn": [], "altEs": [] },
+            { "es": "La pomme et le lait.", "en": "The apple and the milk.", "altEn": [], "altEs": [] }
+          ]
+        },
+        {
+          "id": "u2",
+          "title": "Greetings",
+          "subtitle": "Saying hello and introducing yourself",
+          "tip": "Introduce yourself with 'je m'appelle...' (literally 'I call myself...'). Use 'tu' with friends and family, but 'vous' with strangers or to be polite — 'comment allez-vous ?' is the formal 'how are you?'.",
+          "words": [
+            { "es": "bonjour", "en": "hello / good morning", "emoji": "👋" },
+            { "es": "au revoir", "en": "goodbye" },
+            { "es": "bonsoir", "en": "good evening", "emoji": "🌆" },
+            { "es": "bonne nuit", "en": "good night", "emoji": "🌙" },
+            { "es": "merci", "en": "thank you", "emoji": "🙏" },
+            { "es": "s'il vous plaît", "en": "please" },
+            { "es": "bien", "en": "well / fine", "emoji": "👍" },
+            { "es": "mal", "en": "bad / badly" },
+            { "es": "je m'appelle", "en": "my name is" },
+            { "es": "enchanté", "en": "nice to meet you" },
+            { "es": "à bientôt", "en": "see you later" },
+            { "es": "comment allez-vous ?", "en": "how are you?" }
+          ],
+          "sentences": [
+            { "es": "Bonjour, comment allez-vous ?", "en": "Hello, how are you?", "altEn": ["Good morning, how are you?"], "altEs": ["Bonjour, comment vas-tu ?"] },
+            { "es": "Je vais bien, merci.", "en": "I am well, thank you.", "altEn": ["I'm doing well, thank you.", "I'm fine, thanks."], "altEs": [] },
+            { "es": "Je m'appelle Marie.", "en": "My name is Marie.", "altEn": ["I'm called Marie.", "I am Marie."], "altEs": [] },
+            { "es": "Enchanté, à bientôt !", "en": "Nice to meet you, see you later!", "altEn": [], "altEs": [] },
+            { "es": "Bonsoir et bonne nuit.", "en": "Good evening and good night.", "altEn": [], "altEs": [] },
+            { "es": "S'il vous plaît, merci beaucoup.", "en": "Please, thank you very much.", "altEn": [], "altEs": [] },
+            { "es": "Au revoir, à bientôt.", "en": "Goodbye, see you later.", "altEn": [], "altEs": [] },
+            { "es": "Comment vas-tu ?", "en": "How are you?", "altEn": ["How are you doing?"], "altEs": ["Comment allez-vous ?"] },
+            { "es": "Je vais mal aujourd'hui.", "en": "I am doing badly today.", "altEn": ["I'm not doing well today."], "altEs": [] },
+            { "es": "Bonjour, je m'appelle Paul.", "en": "Hello, my name is Paul.", "altEn": ["Hi, I'm Paul."], "altEs": [] }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "title": "Everyday life",
+      "color": "#1cb0f6",
+      "units": [
+        {
+          "id": "u3",
+          "title": "Food & drink",
+          "subtitle": "Ordering at a café",
+          "tip": "To order politely, use 'je voudrais...' (I would like...) — it is softer and more polite than 'je veux' (I want). End with 's'il vous plaît' to be courteous.",
+          "words": [
+            { "es": "le café", "en": "the coffee", "emoji": "☕" },
+            { "es": "le thé", "en": "the tea", "emoji": "🍵" },
+            { "es": "l'eau", "en": "the water", "emoji": "💧" },
+            { "es": "le jus d'orange", "en": "the orange juice", "emoji": "🧃" },
+            { "es": "le sucre", "en": "the sugar", "emoji": "🍬" },
+            { "es": "l'addition", "en": "the check / the bill", "emoji": "🧾" },
+            { "es": "le petit-déjeuner", "en": "the breakfast", "emoji": "🥐" },
+            { "es": "manger", "en": "to eat", "emoji": "🍽️" },
+            { "es": "boire", "en": "to drink", "emoji": "🥤" },
+            { "es": "je voudrais", "en": "I would like" },
+            { "es": "le menu", "en": "the menu", "emoji": "📋" },
+            { "es": "le serveur", "en": "the waiter", "emoji": "🧑‍🍳" }
+          ],
+          "sentences": [
+            { "es": "Je voudrais un café, s'il vous plaît.", "en": "I would like a coffee, please.", "altEn": ["I'd like a coffee, please."], "altEs": [] },
+            { "es": "Le serveur apporte le menu.", "en": "The waiter brings the menu.", "altEn": ["The waiter is bringing the menu."], "altEs": [] },
+            { "es": "Je voudrais un thé avec du sucre.", "en": "I would like a tea with sugar.", "altEn": ["I'd like a tea with sugar."], "altEs": [] },
+            { "es": "L'addition, s'il vous plaît.", "en": "The check, please.", "altEn": ["The bill, please."], "altEs": [] },
+            { "es": "Je voudrais un jus d'orange.", "en": "I would like an orange juice.", "altEn": ["I'd like an orange juice."], "altEs": [] },
+            { "es": "Nous mangeons le petit-déjeuner.", "en": "We eat breakfast.", "altEn": ["We are eating breakfast.", "We're having breakfast."], "altEs": [] },
+            { "es": "Tu veux boire de l'eau ?", "en": "Do you want to drink water?", "altEn": ["Do you want some water?"], "altEs": [] },
+            { "es": "Le café est très bon.", "en": "The coffee is very good.", "altEn": [], "altEs": [] },
+            { "es": "Je voudrais voir le menu.", "en": "I would like to see the menu.", "altEn": ["I'd like to see the menu."], "altEs": [] },
+            { "es": "Merci, le serveur est gentil.", "en": "Thank you, the waiter is kind.", "altEn": ["Thanks, the waiter is nice."], "altEs": [] }
+          ]
+        },
+        {
+          "id": "u4",
+          "title": "Family & pets",
+          "subtitle": "Talking about your family",
+          "tip": "Possessives agree with the noun's gender, not the owner's: 'mon père' (my father), 'ma mère' (my mother), 'mes amis' (my friends). Adjectives also agree — 'un petit chien' but 'une petite fille'.",
+          "words": [
+            { "es": "la mère", "en": "the mother", "emoji": "👩" },
+            { "es": "le père", "en": "the father", "emoji": "👨" },
+            { "es": "le frère", "en": "the brother", "emoji": "👦" },
+            { "es": "la sœur", "en": "the sister", "emoji": "👧" },
+            { "es": "le fils", "en": "the son", "emoji": "👦" },
+            { "es": "la fille", "en": "the daughter", "emoji": "👧" },
+            { "es": "la famille", "en": "the family", "emoji": "👨‍👩‍👧‍👦" },
+            { "es": "le chien", "en": "the dog", "emoji": "🐕" },
+            { "es": "le chat", "en": "the cat", "emoji": "🐈" },
+            { "es": "l'ami", "en": "the friend", "emoji": "🧑‍🤝‍🧑" },
+            { "es": "grand", "en": "big / tall" },
+            { "es": "petit", "en": "small / little" }
+          ],
+          "sentences": [
+            { "es": "Ma mère et mon père.", "en": "My mother and my father.", "altEn": [], "altEs": [] },
+            { "es": "J'ai un frère et une sœur.", "en": "I have a brother and a sister.", "altEn": [], "altEs": [] },
+            { "es": "Le chien est grand.", "en": "The dog is big.", "altEn": ["The dog is tall."], "altEs": [] },
+            { "es": "Le chat est petit.", "en": "The cat is small.", "altEn": ["The cat is little."], "altEs": [] },
+            { "es": "C'est ma famille.", "en": "This is my family.", "altEn": ["It's my family.", "That's my family."], "altEs": [] },
+            { "es": "Mon ami a un chat.", "en": "My friend has a cat.", "altEn": [], "altEs": [] },
+            { "es": "Le fils est petit.", "en": "The son is small.", "altEn": ["The son is little."], "altEs": [] },
+            { "es": "Ma sœur a un grand chien.", "en": "My sister has a big dog.", "altEn": [], "altEs": [] },
+            { "es": "Le père et la mère sont gentils.", "en": "The father and the mother are kind.", "altEn": ["The father and mother are nice."], "altEs": [] },
+            { "es": "J'aime ma famille.", "en": "I love my family.", "altEn": ["I like my family."], "altEs": [] }
+          ]
+        },
+        {
+          "id": "u5",
+          "title": "Numbers & age",
+          "subtitle": "Counting and talking about age",
+          "tip": "In French, age uses the verb avoir (to have), not être: 'j'ai vingt ans' literally means 'I have twenty years'. Don't forget the word 'ans' (years) — 'j'ai cinq' alone is incorrect.",
+          "words": [
+            { "es": "un", "en": "one", "emoji": "1️⃣" },
+            { "es": "deux", "en": "two", "emoji": "2️⃣" },
+            { "es": "trois", "en": "three", "emoji": "3️⃣" },
+            { "es": "quatre", "en": "four", "emoji": "4️⃣" },
+            { "es": "cinq", "en": "five", "emoji": "5️⃣" },
+            { "es": "dix", "en": "ten", "emoji": "🔟" },
+            { "es": "combien ?", "en": "how many? / how much?" },
+            { "es": "an", "en": "year", "emoji": "📅" },
+            { "es": "ans", "en": "years" },
+            { "es": "j'ai", "en": "I have / I am (age)" },
+            { "es": "l'anniversaire", "en": "the birthday", "emoji": "🎂" },
+            { "es": "aujourd'hui", "en": "today", "emoji": "📆" }
+          ],
+          "sentences": [
+            { "es": "J'ai dix ans.", "en": "I am ten years old.", "altEn": ["I'm ten years old.", "I am ten."], "altEs": [] },
+            { "es": "Un, deux, trois, quatre, cinq.", "en": "One, two, three, four, five.", "altEn": [], "altEs": [] },
+            { "es": "Tu as quel âge ?", "en": "How old are you?", "altEn": ["What is your age?"], "altEs": ["Quel âge as-tu ?"] },
+            { "es": "C'est mon anniversaire aujourd'hui.", "en": "It is my birthday today.", "altEn": ["It's my birthday today.", "Today is my birthday."], "altEs": [] },
+            { "es": "Mon frère a cinq ans.", "en": "My brother is five years old.", "altEn": ["My brother is five."], "altEs": [] },
+            { "es": "Combien de pommes ?", "en": "How many apples?", "altEn": [], "altEs": [] },
+            { "es": "J'ai deux chats.", "en": "I have two cats.", "altEn": [], "altEs": [] },
+            { "es": "Ma sœur a trois ans aujourd'hui.", "en": "My sister is three years old today.", "altEn": ["My sister turns three today."], "altEs": [] },
+            { "es": "Bon anniversaire !", "en": "Happy birthday!", "altEn": [], "altEs": ["Joyeux anniversaire !"] },
+            { "es": "J'ai quatre frères.", "en": "I have four brothers.", "altEn": [], "altEs": [] }
+          ]
+        }
+      ]
+    }
+  ]
+}

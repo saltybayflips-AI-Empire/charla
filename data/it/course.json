@@ -1,0 +1,223 @@
+{
+  "code": "it",
+  "func": {
+    "il": "the",
+    "lo": "the",
+    "la": "the",
+    "l'": "the",
+    "i": "the",
+    "gli": "the",
+    "le": "the",
+    "un": "a",
+    "una": "a",
+    "uno": "a",
+    "io": "I",
+    "tu": "you",
+    "lui": "he",
+    "lei": "she",
+    "noi": "we",
+    "voi": "you",
+    "loro": "they",
+    "sono": "am",
+    "sei": "are",
+    "è": "is",
+    "siamo": "are",
+    "siete": "are",
+    "ho": "have",
+    "hai": "have",
+    "ha": "has",
+    "abbiamo": "have",
+    "avete": "have",
+    "hanno": "have",
+    "e": "and",
+    "o": "or",
+    "ma": "but",
+    "non": "not",
+    "con": "with",
+    "per": "for",
+    "di": "of",
+    "a": "to",
+    "in": "in",
+    "su": "on",
+    "sì": "yes",
+    "no": "no",
+    "molto": "very",
+    "anche": "also"
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "title": "First steps",
+      "color": "#58cc02",
+      "units": [
+        {
+          "id": "u1",
+          "title": "Basics",
+          "subtitle": "Form simple sentences",
+          "tip": "Every Italian noun is masculine or feminine: you say il pane but la mela. To say who someone is, use the verb essere — io sono means 'I am' and tu sei means 'you are'.",
+          "words": [
+            {"es": "l'uomo", "en": "the man", "emoji": "👨"},
+            {"es": "la donna", "en": "the woman", "emoji": "👩"},
+            {"es": "il ragazzo", "en": "the boy", "emoji": "👦"},
+            {"es": "la ragazza", "en": "the girl", "emoji": "👧"},
+            {"es": "l'acqua", "en": "the water", "emoji": "💧"},
+            {"es": "il pane", "en": "the bread", "emoji": "🍞"},
+            {"es": "la mela", "en": "the apple", "emoji": "🍎"},
+            {"es": "il latte", "en": "the milk", "emoji": "🥛"},
+            {"es": "io", "en": "I"},
+            {"es": "tu", "en": "you"},
+            {"es": "sì", "en": "yes"},
+            {"es": "no", "en": "no"}
+          ],
+          "sentences": [
+            {"es": "Io sono un uomo", "en": "I am a man", "altEn": ["I'm a man"], "altEs": ["Sono un uomo"]},
+            {"es": "Tu sei una donna", "en": "You are a woman", "altEn": ["You're a woman"], "altEs": ["Sei una donna"]},
+            {"es": "Il ragazzo e la ragazza", "en": "The boy and the girl", "altEn": []},
+            {"es": "La mela è della ragazza", "en": "The apple is the girl's", "altEn": ["The apple belongs to the girl"]},
+            {"es": "Tu sei un ragazzo?", "en": "Are you a boy?", "altEn": [], "altEs": ["Sei un ragazzo?"]},
+            {"es": "Sì, io sono la donna", "en": "Yes, I am the woman", "altEn": ["Yes, I'm the woman"], "altEs": ["Sì, sono la donna"]},
+            {"es": "No, tu non sei l'uomo", "en": "No, you are not the man", "altEn": ["No, you're not the man"], "altEs": ["No, non sei l'uomo"]},
+            {"es": "Il pane e il latte", "en": "The bread and the milk", "altEn": ["Bread and milk"]},
+            {"es": "Io bevo l'acqua", "en": "I drink the water", "altEn": ["I drink water"]},
+            {"es": "Io sono una ragazza e tu sei un ragazzo", "en": "I am a girl and you are a boy", "altEn": ["I'm a girl and you're a boy"]}
+          ]
+        },
+        {
+          "id": "u2",
+          "title": "Greetings",
+          "subtitle": "Say hello and goodbye",
+          "tip": "To introduce yourself, say mi chiamo followed by your name (literally 'I call myself'). Use ciao with friends; salve or buongiorno are more formal.",
+          "words": [
+            {"es": "ciao", "en": "hello", "emoji": "👋"},
+            {"es": "arrivederci", "en": "goodbye"},
+            {"es": "buongiorno", "en": "good morning", "emoji": "🌅"},
+            {"es": "buonasera", "en": "good evening", "emoji": "🌆"},
+            {"es": "buonanotte", "en": "good night", "emoji": "🌙"},
+            {"es": "come stai?", "en": "how are you?"},
+            {"es": "bene", "en": "well", "emoji": "👍"},
+            {"es": "male", "en": "bad", "emoji": "👎"},
+            {"es": "grazie", "en": "thank you", "emoji": "🙏"},
+            {"es": "per favore", "en": "please"},
+            {"es": "mi chiamo", "en": "my name is"},
+            {"es": "piacere", "en": "nice to meet you", "emoji": "🤝"}
+          ],
+          "sentences": [
+            {"es": "Ciao! Come stai?", "en": "Hello! How are you?", "altEn": ["Hi! How are you?"]},
+            {"es": "Buongiorno, come stai?", "en": "Good morning, how are you?", "altEn": []},
+            {"es": "Sto bene, grazie", "en": "I am well, thank you", "altEn": ["I'm fine, thank you", "I'm well, thanks"]},
+            {"es": "Mi chiamo Marco", "en": "My name is Marco", "altEn": ["I'm called Marco"]},
+            {"es": "Piacere!", "en": "Nice to meet you!", "altEn": ["Pleased to meet you!"]},
+            {"es": "Un caffè, per favore", "en": "A coffee, please", "altEn": []},
+            {"es": "Come stai? Male.", "en": "How are you? Bad.", "altEn": ["How are you? Not good."]},
+            {"es": "Grazie e arrivederci", "en": "Thank you and goodbye", "altEn": ["Thanks and goodbye"]},
+            {"es": "Buonasera, mi chiamo Anna", "en": "Good evening, my name is Anna", "altEn": []},
+            {"es": "Buonanotte!", "en": "Good night!", "altEn": []}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "title": "Everyday life",
+      "color": "#1cb0f6",
+      "units": [
+        {
+          "id": "u3",
+          "title": "Food & drink",
+          "subtitle": "Order at a café",
+          "tip": "To order politely, use vorrei ('I would like') instead of voglio ('I want'). Vorrei un caffè is the natural, courteous way to ask for something.",
+          "words": [
+            {"es": "il caffè", "en": "the coffee", "emoji": "☕"},
+            {"es": "il tè", "en": "the tea", "emoji": "🍵"},
+            {"es": "l'acqua", "en": "the water", "emoji": "💧"},
+            {"es": "il succo", "en": "the juice", "emoji": "🧃"},
+            {"es": "lo zucchero", "en": "the sugar", "emoji": "🍬"},
+            {"es": "il conto", "en": "the check", "emoji": "🧾"},
+            {"es": "la colazione", "en": "the breakfast", "emoji": "🥐"},
+            {"es": "mangiare", "en": "to eat", "emoji": "🍽️"},
+            {"es": "bere", "en": "to drink"},
+            {"es": "vorrei", "en": "I would like"},
+            {"es": "il menù", "en": "the menu", "emoji": "📋"},
+            {"es": "il cameriere", "en": "the waiter", "emoji": "🤵"}
+          ],
+          "sentences": [
+            {"es": "Vorrei un caffè", "en": "I would like a coffee", "altEn": ["I'd like a coffee"]},
+            {"es": "Vorrei un tè con zucchero", "en": "I would like a tea with sugar", "altEn": ["I'd like tea with sugar"]},
+            {"es": "Il menù, per favore", "en": "The menu, please", "altEn": []},
+            {"es": "Il cameriere porta il caffè", "en": "The waiter brings the coffee", "altEn": []},
+            {"es": "Vorrei l'acqua, per favore", "en": "I would like the water, please", "altEn": ["I'd like water, please"]},
+            {"es": "Io bevo un succo", "en": "I drink a juice", "altEn": ["I'm drinking a juice"]},
+            {"es": "Mangiare la colazione", "en": "To eat breakfast", "altEn": ["Eating breakfast"]},
+            {"es": "Il conto, per favore", "en": "The check, please", "altEn": ["The bill, please"]},
+            {"es": "Vorrei un caffè e un'acqua", "en": "I would like a coffee and a water", "altEn": ["I'd like a coffee and a water"]},
+            {"es": "Grazie, cameriere", "en": "Thank you, waiter", "altEn": []}
+          ]
+        },
+        {
+          "id": "u4",
+          "title": "Family & pets",
+          "subtitle": "Talk about your family",
+          "tip": "Possessives like il mio / la mia agree with the noun and usually take the article: il mio cane, la mia sorella. Adjectives also agree — un cane piccolo, una casa piccola.",
+          "words": [
+            {"es": "la madre", "en": "the mother", "emoji": "👩"},
+            {"es": "il padre", "en": "the father", "emoji": "👨"},
+            {"es": "il fratello", "en": "the brother", "emoji": "👦"},
+            {"es": "la sorella", "en": "the sister", "emoji": "👧"},
+            {"es": "il figlio", "en": "the son", "emoji": "👶"},
+            {"es": "la figlia", "en": "the daughter", "emoji": "👧"},
+            {"es": "la famiglia", "en": "the family", "emoji": "👨‍👩‍👧‍👦"},
+            {"es": "il cane", "en": "the dog", "emoji": "🐶"},
+            {"es": "il gatto", "en": "the cat", "emoji": "🐱"},
+            {"es": "l'amico", "en": "the friend", "emoji": "🧑‍🤝‍🧑"},
+            {"es": "grande", "en": "big"},
+            {"es": "piccolo", "en": "small"}
+          ],
+          "sentences": [
+            {"es": "La mia famiglia è grande", "en": "My family is big", "altEn": []},
+            {"es": "Il mio cane è piccolo", "en": "My dog is small", "altEn": []},
+            {"es": "La madre e il padre", "en": "The mother and the father", "altEn": ["Mother and father"]},
+            {"es": "Ho un fratello e una sorella", "en": "I have a brother and a sister", "altEn": ["I've got a brother and a sister"]},
+            {"es": "Il gatto è piccolo", "en": "The cat is small", "altEn": []},
+            {"es": "Il mio amico ha un cane", "en": "My friend has a dog", "altEn": ["My friend has got a dog"]},
+            {"es": "La figlia è piccola", "en": "The daughter is small", "altEn": []},
+            {"es": "Il figlio è grande", "en": "The son is big", "altEn": []},
+            {"es": "La mia sorella ha un gatto", "en": "My sister has a cat", "altEn": ["My sister has got a cat"], "altEs": ["Mia sorella ha un gatto"]},
+            {"es": "Il padre e il figlio", "en": "The father and the son", "altEn": ["Father and son"]}
+          ]
+        },
+        {
+          "id": "u5",
+          "title": "Numbers & age",
+          "subtitle": "Count and tell your age",
+          "tip": "In Italian, age uses avere ('to have'), not essere: ho dieci anni literally means 'I have ten years'. To ask, say quanti anni hai?",
+          "words": [
+            {"es": "uno", "en": "one", "emoji": "1️⃣"},
+            {"es": "due", "en": "two", "emoji": "2️⃣"},
+            {"es": "tre", "en": "three", "emoji": "3️⃣"},
+            {"es": "quattro", "en": "four", "emoji": "4️⃣"},
+            {"es": "cinque", "en": "five", "emoji": "5️⃣"},
+            {"es": "sei", "en": "six", "emoji": "6️⃣"},
+            {"es": "dieci", "en": "ten", "emoji": "🔟"},
+            {"es": "quanti?", "en": "how many?"},
+            {"es": "l'anno", "en": "the year", "emoji": "📅"},
+            {"es": "gli anni", "en": "the years"},
+            {"es": "il compleanno", "en": "the birthday", "emoji": "🎂"},
+            {"es": "oggi", "en": "today"}
+          ],
+          "sentences": [
+            {"es": "Ho dieci anni", "en": "I am ten years old", "altEn": ["I'm ten years old"]},
+            {"es": "Quanti anni hai?", "en": "How old are you?", "altEn": ["How many years do you have?"]},
+            {"es": "Uno, due, tre", "en": "One, two, three", "altEn": []},
+            {"es": "Oggi è il mio compleanno", "en": "Today is my birthday", "altEn": []},
+            {"es": "Ho sei anni", "en": "I am six years old", "altEn": ["I'm six years old"]},
+            {"es": "Quattro e cinque", "en": "Four and five", "altEn": []},
+            {"es": "Quanti anni ha?", "en": "How old is he?", "altEn": ["How old is she?", "How many years does he have?"]},
+            {"es": "Tu hai due fratelli", "en": "You have two brothers", "altEn": ["You've got two brothers"], "altEs": ["Hai due fratelli"]},
+            {"es": "Cinque anni oggi", "en": "Five years old today", "altEn": []},
+            {"es": "Lui ha tre anni", "en": "He is three years old", "altEn": ["He's three years old"]}
+          ]
+        }
+      ]
+    }
+  ]
+}

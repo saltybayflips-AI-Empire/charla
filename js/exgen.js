@@ -5,12 +5,115 @@ const EX = {
   STORIES: [],
   storyByUnit: {},
 
+  // Spanish connector words for the hint breakdown (high-frequency, unambiguous)
+  FUNC_ES: {
+    "el": "the", "la": "the", "los": "the", "las": "the", "un": "a", "una": "a", "unos": "some", "unas": "some",
+    "yo": "I", "ella": "she", "nosotros": "we", "ellos": "they", "usted": "you",
+    "soy": "am", "eres": "are", "es": "is", "somos": "are", "son": "are",
+    "estoy": "am", "estas": "are", "esta": "is", "estan": "are", "hay": "there is",
+    "y": "and", "o": "or", "pero": "but", "porque": "because", "que": "that",
+    "de": "of", "en": "in", "con": "with", "por": "for", "para": "for", "sin": "without",
+    "no": "not", "si": "yes", "tambien": "also", "muy": "very", "mas": "more",
+    "aqui": "here", "alli": "there", "hoy": "today", "ahora": "now"
+  },
+
   init() {
-    if (window.COURSE_PART1 && COURSE_PART1.sections) EX.COURSE.sections.push(...COURSE_PART1.sections);
-    if (window.COURSE_PART2 && COURSE_PART2.sections) EX.COURSE.sections.push(...COURSE_PART2.sections);
+    window.COURSES = window.COURSES || {};
+    window.AUDIO_MAPS = window.AUDIO_MAPS || {};
+    window.STORIES_BY_LANG = window.STORIES_BY_LANG || {};
+    // legacy shim: the original Spanish files set flat globals — map them into the es bucket
+    if (!window.COURSES.es && window.COURSE_PART1) {
+      window.COURSES.es = { part1: window.COURSE_PART1, part2: window.COURSE_PART2, func: EX.FUNC_ES };
+      window.STORIES_BY_LANG.es = window.STORIES || [];
+      window.AUDIO_MAPS.es = window.AUDIO_MAP || {};
+    }
+    if (window.LANG) LANG.load();
+    const code = window.LANG ? LANG.active : "es";
+
+    EX.COURSE = { sections: [] };
+    EX.UNITS = [];
+    EX.storyByUnit = {};
+    const course = window.COURSES[code] || {};
+    if (course.part1 && course.part1.sections) EX.COURSE.sections.push(...course.part1.sections);
+    if (course.part2 && course.part2.sections) EX.COURSE.sections.push(...course.part2.sections);
     EX.COURSE.sections.forEach(sec => sec.units.forEach(u => { u.secColor = sec.color; u.secTitle = sec.title; EX.UNITS.push(u); }));
-    EX.STORIES = window.STORIES || [];
+    EX.STORIES = window.STORIES_BY_LANG[code] || [];
     EX.STORIES.forEach(st => { EX.storyByUnit[st.unit] = st; });
+    // point the audio player at the active language's clip map
+    window.AUDIO_MAP = window.AUDIO_MAPS[code] || {};
+    EX.buildLexicon();
+  },
+
+  /* ---------- vocabulary lexicon (powers hints / glosses) ---------- */
+  // phrases: known target-language word-entries, longest first, for chunked glossing.
+  // FUNC: per-language map of common connector words (articles, pronouns, copula…).
+  buildLexicon() {
+    const seen = new Set();
+    EX.PHRASES = [];
+    EX.UNITS.forEach(u => u.words.forEach(w => {
+      const f = U.fold(w.es);
+      if (!f || seen.has(f)) return;
+      seen.add(f);
+      EX.PHRASES.push({ fold: f, raw: w.es, en: w.en, n: f.split(" ").length });
+    }));
+    EX.PHRASES.sort((a, b) => b.n - a.n); // greedy longest-match first
+    // function-word gloss map (folded keys)
+    EX.FUNC = {};
+    const code = window.LANG ? LANG.active : "es";
+    const src = (window.COURSES[code] && window.COURSES[code].func) || {};
+    Object.keys(src).forEach(k => { EX.FUNC[U.fold(k)] = src[k]; });
+  },
+
+  // break a target sentence into known [chunk, meaning] pairs (best effort)
+  gloss(text) {
+    const toks = U.rawTokens(text);
+    const folds = toks.map(t => U.fold(t));
+    const out = [];
+    let i = 0;
+    while (i < toks.length) {
+      let hit = null;
+      for (const p of EX.PHRASES) {
+        if (p.n > toks.length - i) continue;
+        if (folds.slice(i, i + p.n).join(" ") === p.fold) { hit = p; break; }
+      }
+      if (hit) { out.push([toks.slice(i, i + hit.n).join(" "), hit.en]); i += hit.n; }
+      else { out.push([toks[i], EX.FUNC[folds[i]] || null]); i++; }
+    }
+    return out;
+  },
+
+  // grammar "why" for a sentence: prefer the sentence's own tip, else the unit tip
+  whyFor(u, sent) {
+    if (sent && sent.tip) return sent.tip;
+    return u && u.tip ? u.tip : "";
+  },
+
+  /* ---------- answer diff (what went wrong) ---------- */
+  // token-level LCS so we can mark which words matched / were missed / were extra
+  lcsMatch(a, b) {
+    const m = a.length, n = b.length;
+    const dp = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
+    for (let i = m - 1; i >= 0; i--)
+      for (let j = n - 1; j >= 0; j--)
+        dp[i][j] = a[i] === b[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+    const ai = new Set(), bi = new Set();
+    let i = 0, j = 0;
+    while (i < m && j < n) {
+      if (a[i] === b[j]) { ai.add(i); bi.add(j); i++; j++; }
+      else if (dp[i + 1][j] >= dp[i][j + 1]) i++;
+      else j++;
+    }
+    return { ai, bi }; // matched index sets in a and b
+  },
+
+  // returns {youHtml, solHtml}: user's words with wrong ones struck; solution with missed words bolded
+  answerDiffHtml(userText, correctText) {
+    const uT = U.rawTokens(userText), cT = U.rawTokens(correctText);
+    if (!uT.length) return { youHtml: "", solHtml: U.esc(correctText) };
+    const { ai, bi } = EX.lcsMatch(uT.map(U.fold), cT.map(U.fold));
+    const youHtml = uT.map((t, k) => ai.has(k) ? U.esc(t) : '<span class="d-bad">' + U.esc(t) + "</span>").join(" ");
+    const solHtml = cT.map((t, k) => bi.has(k) ? U.esc(t) : '<b class="d-add">' + U.esc(t) + "</b>").join(" ");
+    return { youHtml, solHtml };
   },
 
   unit(id) { return EX.UNITS.find(u => u.id === id); },

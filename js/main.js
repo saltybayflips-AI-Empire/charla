@@ -1,6 +1,6 @@
 /* Charla — boot, tabs, install tip, service worker (global MAIN) */
 const MAIN = {
-  VERSION: "1.1.0",
+  VERSION: "1.2.0",
   TABS: ["learn", "practice", "leagues", "quests", "shop", "profile"],
 
   go(tab) {
@@ -51,10 +51,18 @@ const MAIN = {
     U.$("#rs-no").onclick = () => { ST.clearResume(); m.close(); };
   },
 
+  // first-run language picker (only when there's a real choice and none made yet)
+  maybeFirstRun() {
+    if (!window.LANG) return;
+    if (LANG.chosen() || LANG.availableCodes().length < 2) return;
+    SC.langModal(true);
+  },
+
   boot() {
-    ST.load();
-    AU.init();
-    EX.init();
+    EX.init();        // legacy shim + LANG.load + active-language course + audio map + lexicon
+    ST.load();        // per-language progress (LANG.active is set now)
+    AU.init();        // device voice for the active language
+    LS.initTitles();  // exercise titles reference the active language name
     SC.bindHeader();
     SC.renderHeader();
     MAIN.TABS.forEach(t => {
@@ -63,6 +71,7 @@ const MAIN = {
     MAIN.go("learn");
     MAIN.questsDot();
     MAIN.installTip();
+    MAIN.maybeFirstRun();
     SC.maybeLeagueBanner();
     MAIN.maybeResume();
     // unlock audio on first touch (iOS)

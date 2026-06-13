@@ -11,8 +11,9 @@ const PT = {
     }
     let html = "";
     if (!ST.s.flags.welcomed) {
+      const L = window.LANG ? LANG : { def: () => ({ welcome: "¡Bienvenido!" }), name: () => "Spanish" };
       html += '<div class="hero">' + U.parrot(110) +
-        "<h1>¡Bienvenido!</h1><p>I'm <b>Loro</b>. Let's learn Spanish —<br>a few minutes a day. Tap the first lesson!</p></div>";
+        "<h1>" + U.esc(L.def().welcome) + "</h1><p>I'm <b>Loro</b>. Let's learn " + U.esc(L.name()) + " —<br>a few minutes a day. Tap the first lesson!</p></div>";
     }
     const allNodes = EX.allNodes();
     const activeId = (EX.activeNode() || {}).id;
