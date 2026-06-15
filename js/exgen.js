@@ -54,7 +54,7 @@ const EX = {
       const f = U.fold(w.es);
       if (!f || seen.has(f)) return;
       seen.add(f);
-      EX.PHRASES.push({ fold: f, raw: w.es, en: w.en, n: f.split(" ").length });
+      EX.PHRASES.push({ fold: f, raw: w.es, en: w.en, rom: w.rom, n: f.split(" ").length });
     }));
     EX.PHRASES.sort((a, b) => b.n - a.n); // greedy longest-match first
     // function-word gloss map (folded keys)
@@ -62,12 +62,16 @@ const EX = {
     const code = window.LANG ? LANG.active : "es";
     const src = (window.COURSES[code] && window.COURSES[code].func) || {};
     Object.keys(src).forEach(k => { EX.FUNC[U.fold(k)] = src[k]; });
+    // single-word stems (longest raw first) — used to peel a stem off an agglutinated token (Korean)
+    EX.STEMS = EX.PHRASES.filter(p => p.n === 1).map(p => ({ raw: p.raw, en: p.en, rom: p.rom }))
+      .sort((a, b) => b.raw.length - a.raw.length);
   },
 
-  // break a target sentence into known [chunk, meaning] pairs (best effort)
+  // break a target sentence into known [chunk, meaning, rom?] pairs (best effort)
   gloss(text) {
     const toks = U.rawTokens(text);
     const folds = toks.map(t => U.fold(t));
+    const agglut = window.LANG && LANG.def().agglut; // Korean: peel stem+particle apart
     const out = [];
     let i = 0;
     while (i < toks.length) {
@@ -76,7 +80,18 @@ const EX = {
         if (p.n > toks.length - i) continue;
         if (folds.slice(i, i + p.n).join(" ") === p.fold) { hit = p; break; }
       }
-      if (hit) { out.push([toks.slice(i, i + hit.n).join(" "), hit.en]); i += hit.n; }
+      if (hit) { out.push([toks.slice(i, i + hit.n).join(" "), hit.en, hit.rom]); i += hit.n; }
+      else if (agglut && !EX.FUNC[folds[i]]) {
+        // split a known noun/verb stem off the front of an eojeol; gloss the remaining particle/ending
+        const tok = toks[i];
+        const stem = EX.STEMS.find(s => s.raw.length < tok.length && tok.startsWith(s.raw));
+        if (stem) {
+          out.push([stem.raw, stem.en, stem.rom]);
+          const rest = tok.slice(stem.raw.length);
+          out.push([rest, EX.FUNC[U.fold(rest)] || null]);
+        } else out.push([tok, null]);
+        i++;
+      }
       else { out.push([toks[i], EX.FUNC[folds[i]] || null]); i++; }
     }
     return out;

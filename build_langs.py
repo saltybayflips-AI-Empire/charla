@@ -4,7 +4,8 @@ import json, os, sys, io
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 BASE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
-LANGS = ["fr", "de", "it", "pt"]
+LANGS = ["fr", "de", "it", "pt", "ko"]
+ROMAN = {"ko"}  # languages that must carry romanization on every word/sentence
 EXPECT_UNITS = ["u1", "u2", "u3", "u4", "u5"]
 
 errs, warns = [], []
@@ -44,6 +45,8 @@ def validate_course(code, course):
             es, en = w.get("es", ""), w.get("en", "")
             if not es or not en:
                 err(code, "%s word missing es/en: %r" % (uid, w))
+            if code in ROMAN and not w.get("rom"):
+                err(code, "%s word missing rom: %r" % (uid, es))
             if es.strip().lower() in seen:
                 warn(code, "%s duplicate word es=%r" % (uid, es))
             seen.add(es.strip().lower())
@@ -53,6 +56,8 @@ def validate_course(code, course):
             es, en = s.get("es", ""), s.get("en", "")
             if not es or not en:
                 err(code, "%s sentence missing es/en: %r" % (uid, s))
+            if code in ROMAN and not s.get("rom"):
+                err(code, "%s sentence missing rom: %r" % (uid, es))
             wc = len(es.split())
             if wc < 2 or wc > 11:
                 warn(code, "%s sentence length %d: %r" % (uid, wc, es))

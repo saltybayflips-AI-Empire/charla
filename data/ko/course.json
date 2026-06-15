@@ -1,0 +1,217 @@
+{
+  "code": "ko",
+  "func": {
+    "은": "topic (after consonant)",
+    "는": "topic (after vowel)",
+    "이": "subject (after consonant)",
+    "가": "subject (after vowel)",
+    "을": "object (after consonant)",
+    "를": "object (after vowel)",
+    "에": "to / at (place, time)",
+    "에서": "at / from (location)",
+    "도": "also / too",
+    "와": "and / with (after vowel)",
+    "과": "and / with (after consonant)",
+    "하고": "and / with (casual)",
+    "의": "of (possessive)",
+    "만": "only",
+    "저": "I / me (humble)",
+    "나": "I / me (casual)",
+    "너": "you (casual)",
+    "당신": "you (formal)",
+    "우리": "we / our",
+    "제": "my (humble)",
+    "이에요": "to be (after consonant)",
+    "예요": "to be (after vowel)",
+    "입니다": "to be (formal)",
+    "있어요": "to have / there is",
+    "없어요": "to not have / there isn't",
+    "그리고": "and (then)",
+    "하지만": "but",
+    "그래서": "so / therefore",
+    "네": "yes",
+    "아니요": "no",
+    "아니에요": "it is not / no problem",
+    "주세요": "please give me",
+    "안": "not (negation)",
+    "몇": "how many / what number",
+    "정말": "really / very",
+    "아주": "very"
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "title": "First steps",
+      "color": "#58cc02",
+      "units": [
+        {
+          "id": "u1",
+          "title": "Basics",
+          "subtitle": "People, food and your first words",
+          "tip": "Korean word order is Subject-Object-Verb (SOV), so the verb comes last. The topic particle 은/는 marks what the sentence is about (은 after a consonant, 는 after a vowel). The copula 'to be' is 이에요 after a consonant and 예요 after a vowel: 남자예요 (it's a man), 빵이에요 (it's bread).",
+          "words": [
+            { "es": "남자", "en": "man", "rom": "namja", "emoji": "👨" },
+            { "es": "여자", "en": "woman", "rom": "yeoja", "emoji": "👩" },
+            { "es": "남자아이", "en": "boy", "rom": "namjaai", "emoji": "👦" },
+            { "es": "여자아이", "en": "girl", "rom": "yeojaai", "emoji": "👧" },
+            { "es": "물", "en": "water", "rom": "mul", "emoji": "💧" },
+            { "es": "빵", "en": "bread", "rom": "ppang", "emoji": "🍞" },
+            { "es": "사과", "en": "apple", "rom": "sagwa", "emoji": "🍎" },
+            { "es": "우유", "en": "milk", "rom": "uyu", "emoji": "🥛" },
+            { "es": "저", "en": "I / me", "rom": "jeo" },
+            { "es": "당신", "en": "you", "rom": "dangsin" },
+            { "es": "네", "en": "yes", "rom": "ne" },
+            { "es": "아니요", "en": "no", "rom": "aniyo" }
+          ],
+          "sentences": [
+            { "es": "저는 남자예요.", "en": "I am a man.", "rom": "jeoneun namjayeyo.", "altEn": ["I'm a man."] },
+            { "es": "저는 여자예요.", "en": "I am a woman.", "rom": "jeoneun yeojayeyo.", "altEn": ["I'm a woman."] },
+            { "es": "이건 물이에요.", "en": "This is water.", "rom": "igeon murieyo.", "altEn": ["This is the water.", "It is water."] },
+            { "es": "이건 빵이에요.", "en": "This is bread.", "rom": "igeon ppangieyo.", "altEn": ["It is bread."] },
+            { "es": "남자아이가 사과를 먹어요.", "en": "The boy eats an apple.", "rom": "namjaaiga sagwareul meogeoyo.", "altEn": ["The boy is eating an apple."] },
+            { "es": "여자아이가 우유를 마셔요.", "en": "The girl drinks milk.", "rom": "yeojaaiga uyureul masyeoyo.", "altEn": ["The girl is drinking milk."] },
+            { "es": "네, 저는 여자예요.", "en": "Yes, I am a woman.", "rom": "ne, jeoneun yeojayeyo.", "altEn": ["Yes, I'm a woman."] },
+            { "es": "아니요, 물이 아니에요.", "en": "No, it is not water.", "rom": "aniyo, muri anieyo.", "altEn": ["No, it's not water."] },
+            { "es": "사과도 있어요.", "en": "There is an apple too.", "rom": "sagwado isseoyo.", "altEn": ["I have an apple too.", "There are apples too."] },
+            { "es": "여자가 빵을 먹어요.", "en": "The woman eats bread.", "rom": "yeojaga ppangeul meogeoyo.", "altEn": ["The woman is eating bread."] }
+          ]
+        },
+        {
+          "id": "u2",
+          "title": "Greetings",
+          "subtitle": "Say hello, thank you and goodbye",
+          "tip": "The polite ending -요 makes speech friendly but polite, and it is what beginners should use. 안녕하세요 works for both 'hello' and casual greetings. When parting, the person leaving hears 안녕히 계세요 (stay well) and the person staying hears 안녕히 가세요 (go well).",
+          "words": [
+            { "es": "안녕하세요", "en": "hello", "rom": "annyeonghaseyo" },
+            { "es": "안녕히 가세요", "en": "goodbye (to one leaving)", "rom": "annyeonghi gaseyo" },
+            { "es": "안녕히 계세요", "en": "goodbye (to one staying)", "rom": "annyeonghi gyeseyo" },
+            { "es": "감사합니다", "en": "thank you", "rom": "gamsahamnida" },
+            { "es": "고마워요", "en": "thanks", "rom": "gomawoyo" },
+            { "es": "안녕히 주무세요", "en": "good night", "rom": "annyeonghi jumuseyo" },
+            { "es": "괜찮아요", "en": "I'm fine / it's okay", "rom": "gwaenchanayo" },
+            { "es": "이름", "en": "name", "rom": "ireum" },
+            { "es": "반가워요", "en": "nice to meet you", "rom": "bangawoyo" },
+            { "es": "또", "en": "again", "rom": "tto" },
+            { "es": "잘", "en": "well", "rom": "jal" },
+            { "es": "미안해요", "en": "sorry", "rom": "mianhaeyo" }
+          ],
+          "sentences": [
+            { "es": "안녕하세요!", "en": "Hello!", "rom": "annyeonghaseyo!", "altEn": ["Hi!"] },
+            { "es": "잘 지내요?", "en": "How are you?", "rom": "jal jinaeyo?", "altEn": ["Are you doing well?", "How are you doing?"] },
+            { "es": "네, 잘 지내요.", "en": "Yes, I'm doing well.", "rom": "ne, jal jinaeyo.", "altEn": ["Yes, I'm fine."] },
+            { "es": "만나서 반가워요.", "en": "Nice to meet you.", "rom": "mannaseo bangawoyo.", "altEn": ["Glad to meet you."] },
+            { "es": "제 이름은 민수예요.", "en": "My name is Minsu.", "rom": "je ireumeun minsuyeyo.", "altEn": ["I'm Minsu."] },
+            { "es": "정말 감사합니다.", "en": "Thank you very much.", "rom": "jeongmal gamsahamnida.", "altEn": ["Thanks a lot."] },
+            { "es": "고마워요!", "en": "Thanks!", "rom": "gomawoyo!", "altEn": ["Thank you!"] },
+            { "es": "안녕히 가세요.", "en": "Goodbye.", "rom": "annyeonghi gaseyo.", "altEn": ["Bye (to someone leaving)."] },
+            { "es": "또 만나요.", "en": "See you again.", "rom": "tto mannayo.", "altEn": ["See you later.", "Let's meet again."] },
+            { "es": "안녕히 주무세요.", "en": "Good night.", "rom": "annyeonghi jumuseyo.", "altEn": ["Sleep well."] }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "title": "Everyday life",
+      "color": "#1cb0f6",
+      "units": [
+        {
+          "id": "u3",
+          "title": "Food & drink",
+          "subtitle": "Order at a café and ask for things",
+          "tip": "To order, add 주세요 ('please give me') after the thing you want: 커피 주세요 (a coffee, please). The object of a verb takes 을 after a consonant and 를 after a vowel: 물을 마셔요 (I drink water), 커피를 마셔요 (I drink coffee).",
+          "words": [
+            { "es": "커피", "en": "coffee", "rom": "keopi", "emoji": "☕" },
+            { "es": "차", "en": "tea", "rom": "cha", "emoji": "🍵" },
+            { "es": "물", "en": "water", "rom": "mul", "emoji": "💧" },
+            { "es": "주스", "en": "juice", "rom": "juseu", "emoji": "🧃" },
+            { "es": "설탕", "en": "sugar", "rom": "seoltang", "emoji": "🍬" },
+            { "es": "계산서", "en": "the bill", "rom": "gyesanseo", "emoji": "🧾" },
+            { "es": "아침", "en": "breakfast", "rom": "achim", "emoji": "🍳" },
+            { "es": "메뉴", "en": "menu", "rom": "menyu", "emoji": "📋" },
+            { "es": "먹다", "en": "to eat", "rom": "meokda", "emoji": "🍽️" },
+            { "es": "마시다", "en": "to drink", "rom": "masida", "emoji": "🥤" },
+            { "es": "맛있어요", "en": "it's delicious", "rom": "masisseoyo", "emoji": "😋" },
+            { "es": "주세요", "en": "please give me", "rom": "juseyo" }
+          ],
+          "sentences": [
+            { "es": "커피 주세요.", "en": "A coffee, please.", "rom": "keopi juseyo.", "altEn": ["Please give me a coffee.", "Coffee, please."] },
+            { "es": "물 주세요.", "en": "Water, please.", "rom": "mul juseyo.", "altEn": ["Please give me water."] },
+            { "es": "메뉴 주세요.", "en": "The menu, please.", "rom": "menyu juseyo.", "altEn": ["Please give me the menu."] },
+            { "es": "저는 차를 마셔요.", "en": "I drink tea.", "rom": "jeoneun chareul masyeoyo.", "altEn": ["I'm drinking tea."] },
+            { "es": "설탕도 주세요.", "en": "Sugar too, please.", "rom": "seoltangdo juseyo.", "altEn": ["Please give me sugar too."] },
+            { "es": "아침을 먹어요.", "en": "I eat breakfast.", "rom": "achimeul meogeoyo.", "altEn": ["I'm eating breakfast."] },
+            { "es": "주스가 맛있어요.", "en": "The juice is delicious.", "rom": "juseuga masisseoyo.", "altEn": ["The juice tastes good."] },
+            { "es": "커피가 맛있어요.", "en": "The coffee is delicious.", "rom": "keopiga masisseoyo.", "altEn": ["The coffee tastes good."] },
+            { "es": "계산서 주세요.", "en": "The bill, please.", "rom": "gyesanseo juseyo.", "altEn": ["Please give me the check.", "The check, please."] },
+            { "es": "저는 물을 마셔요.", "en": "I drink water.", "rom": "jeoneun mureul masyeoyo.", "altEn": ["I'm drinking water."] }
+          ]
+        },
+        {
+          "id": "u4",
+          "title": "Family & pets",
+          "subtitle": "Talk about your family and animals",
+          "tip": "Use 제 for 'my': 제 어머니 (my mother). Some family words depend on the speaker: a boy calls his older brother 형, a girl calls hers 오빠. Adjectives like 크다/작다 become 커요 (is big) and 작아요 (is small) in polite speech.",
+          "words": [
+            { "es": "어머니", "en": "mother", "rom": "eomeoni", "emoji": "👩" },
+            { "es": "아버지", "en": "father", "rom": "abeoji", "emoji": "👨" },
+            { "es": "형", "en": "older brother (of a male)", "rom": "hyeong", "emoji": "👦" },
+            { "es": "동생", "en": "younger sibling", "rom": "dongsaeng", "emoji": "🧒" },
+            { "es": "아들", "en": "son", "rom": "adeul", "emoji": "👦" },
+            { "es": "딸", "en": "daughter", "rom": "ttal", "emoji": "👧" },
+            { "es": "가족", "en": "family", "rom": "gajok", "emoji": "👨‍👩‍👧‍👦" },
+            { "es": "강아지", "en": "dog", "rom": "gangaji", "emoji": "🐶" },
+            { "es": "고양이", "en": "cat", "rom": "goyangi", "emoji": "🐱" },
+            { "es": "친구", "en": "friend", "rom": "chingu", "emoji": "🧑‍🤝‍🧑" },
+            { "es": "크다", "en": "to be big", "rom": "keuda" },
+            { "es": "작다", "en": "to be small", "rom": "jakda" }
+          ],
+          "sentences": [
+            { "es": "제 어머니예요.", "en": "This is my mother.", "rom": "je eomeoniyeyo.", "altEn": ["She is my mother.", "It's my mother."] },
+            { "es": "제 아버지예요.", "en": "This is my father.", "rom": "je abeojiyeyo.", "altEn": ["He is my father."] },
+            { "es": "우리 가족이에요.", "en": "This is my family.", "rom": "uri gajogieyo.", "altEn": ["It's our family.", "This is our family."] },
+            { "es": "동생이 있어요.", "en": "I have a younger sibling.", "rom": "dongsaengi isseoyo.", "altEn": ["There is a younger sibling."] },
+            { "es": "강아지가 작아요.", "en": "The dog is small.", "rom": "gangajiga jagayo.", "altEn": ["The puppy is small."] },
+            { "es": "고양이가 커요.", "en": "The cat is big.", "rom": "goyangiga keoyo.", "altEn": ["The cat is large."] },
+            { "es": "친구가 있어요.", "en": "I have a friend.", "rom": "chinguga isseoyo.", "altEn": ["There is a friend."] },
+            { "es": "제 친구예요.", "en": "This is my friend.", "rom": "je chinguyeyo.", "altEn": ["He is my friend.", "She is my friend."] },
+            { "es": "아들과 딸이 있어요.", "en": "I have a son and a daughter.", "rom": "adeulgwa ttari isseoyo.", "altEn": ["There are a son and a daughter."] },
+            { "es": "고양이도 가족이에요.", "en": "The cat is family too.", "rom": "goyangido gajogieyo.", "altEn": ["The cat is also family."] }
+          ]
+        },
+        {
+          "id": "u5",
+          "title": "Numbers & age",
+          "subtitle": "Count and talk about age",
+          "tip": "Korean has two number systems. Age uses NATIVE numbers (하나, 둘, 셋…) plus the counter 살: 스무 살 = 20 years old, 다섯 살 = 5 years old. To ask someone's age, say 몇 살이에요? ('How old are you?').",
+          "words": [
+            { "es": "하나", "en": "one", "rom": "hana", "emoji": "1️⃣" },
+            { "es": "둘", "en": "two", "rom": "dul", "emoji": "2️⃣" },
+            { "es": "셋", "en": "three", "rom": "set", "emoji": "3️⃣" },
+            { "es": "넷", "en": "four", "rom": "net", "emoji": "4️⃣" },
+            { "es": "다섯", "en": "five", "rom": "daseot", "emoji": "5️⃣" },
+            { "es": "살", "en": "years old (counter)", "rom": "sal" },
+            { "es": "나이", "en": "age", "rom": "nai" },
+            { "es": "몇", "en": "how many", "rom": "myeot" },
+            { "es": "생일", "en": "birthday", "rom": "saengil", "emoji": "🎂" },
+            { "es": "오늘", "en": "today", "rom": "oneul", "emoji": "📅" },
+            { "es": "있어요", "en": "to have / there is", "rom": "isseoyo" },
+            { "es": "축하해요", "en": "congratulations", "rom": "chukhahaeyo", "emoji": "🎉" }
+          ],
+          "sentences": [
+            { "es": "몇 살이에요?", "en": "How old are you?", "rom": "myeot sarieyo?", "altEn": ["What is your age?"] },
+            { "es": "다섯 살이에요.", "en": "I am five years old.", "rom": "daseot sarieyo.", "altEn": ["I'm five."] },
+            { "es": "동생은 세 살이에요.", "en": "My younger sibling is three years old.", "rom": "dongsaengeun se sarieyo.", "altEn": ["The younger sibling is three."] },
+            { "es": "오늘은 제 생일이에요.", "en": "Today is my birthday.", "rom": "oneureun je saengirieyo.", "altEn": ["It's my birthday today."] },
+            { "es": "생일 축하해요!", "en": "Happy birthday!", "rom": "saengil chukhahaeyo!", "altEn": ["Congratulations on your birthday!"] },
+            { "es": "친구가 둘 있어요.", "en": "I have two friends.", "rom": "chinguga dul isseoyo.", "altEn": ["There are two friends."] },
+            { "es": "사과가 네 개 있어요.", "en": "There are four apples.", "rom": "sagwaga ne gae isseoyo.", "altEn": ["I have four apples."] },
+            { "es": "강아지가 한 살이에요.", "en": "The dog is one year old.", "rom": "gangajiga han sarieyo.", "altEn": ["The puppy is one year old."] },
+            { "es": "나이가 어떻게 돼요?", "en": "What is your age?", "rom": "naiga eotteoke dwaeyo?", "altEn": ["How old are you?", "May I ask your age?"] },
+            { "es": "오늘 친구를 만나요.", "en": "I meet a friend today.", "rom": "oneul chingureul mannayo.", "altEn": ["I'm meeting a friend today."] }
+          ]
+        }
+      ]
+    }
+  ]
+}

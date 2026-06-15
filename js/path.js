@@ -121,7 +121,7 @@ const PT = {
     let words = "";
     u.words.forEach(w => {
       words += '<div class="w-row"><button class="spk" style="font-size:15px;padding:6px 9px" data-say="' + U.esc(w.es) + '">🔊</button>' +
-        '<span class="w-es">' + U.esc(w.es) + '</span><span class="w-en">' + U.esc(w.en) + "</span>" +
+        '<span class="w-es">' + U.esc(w.es) + (w.rom ? '<small class="gl-rom">' + U.esc(w.rom) + "</small>" : "") + '</span><span class="w-en">' + U.esc(w.en) + "</span>" +
         (w.emoji ? '<span style="margin-left:auto">' + w.emoji + "</span>" : "") + "</div>";
     });
     const m = U.modal(

@@ -11,6 +11,7 @@ LANGS = {
     "de": "de-DE-KatjaNeural",
     "it": "it-IT-ElsaNeural",
     "pt": "pt-BR-FranciscaNeural",
+    "ko": "ko-KR-SunHiNeural",
 }
 BASE = os.path.dirname(os.path.abspath(__file__))
 

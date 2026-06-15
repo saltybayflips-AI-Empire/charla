@@ -105,6 +105,9 @@ const LS = {
     U.$("#ls-cont").onclick = () => LS.onContinue(ok);
   },
 
+  // active language uses a non-Latin script with no on-device keyboard (Korean)
+  noType() { return !!(window.LANG && LANG.def().noType); },
+
   /* ---------- hints (free help, on demand) ---------- */
   // which exercise types get a hint button
   hintAvailable() {
@@ -131,6 +134,8 @@ const LS = {
       const targetText = sent.es; // listening / "into target" answers are in the target language
       const showSource = spec.t === "tr" && spec.dir === "fe"; // they can already see the target; gloss it
       const glossText = showSource ? sent.es : targetText;
+      // romanization reading for non-Latin scripts (Korean)
+      if (sent.rom) html += '<div class="reading"><b>Reading:</b> ' + U.esc(sent.rom) + "</div>";
       html += LS.glossHtml(glossText);
       const why = EX.whyFor(r.u, sent);
       if (why) html += '<div class="why-box"><b>Grammar:</b> ' + U.esc(why) + "</div>";
@@ -143,13 +148,13 @@ const LS = {
     U.$("#hint-x").onclick = m.close;
   },
 
-  // chunked vocabulary breakdown of a target-language phrase
+  // chunked vocabulary breakdown of a target-language phrase (rom = optional romanization)
   glossHtml(text) {
     const parts = EX.gloss(text);
     let rows = "";
-    parts.forEach(([chunk, mean]) => {
+    parts.forEach(([chunk, mean, rom]) => {
       rows += '<div class="gl-row"><button class="spk" style="font-size:14px;padding:5px 8px" data-say="' + U.esc(chunk) + '">🔊</button>' +
-        '<span class="gl-t">' + U.esc(chunk) + "</span>" +
+        '<span class="gl-t">' + U.esc(chunk) + (rom ? '<small class="gl-rom">' + U.esc(rom) + "</small>" : "") + "</span>" +
         '<span class="gl-e">' + (mean ? U.esc(mean) : "…") + "</span></div>";
     });
     return '<div class="gloss">' + rows + "</div>";
@@ -370,9 +375,10 @@ const LS = {
     c.evalFn = null;
     c.checked = false;
     switch (spec.t) {
-      case "tr": spec.typed ? LS.exTranslateTyped(body, r) : LS.exTranslateTap(body, r); break;
+      // non-Latin scripts (e.g. Korean) skip typing only when the ANSWER is the target language (dir "ef")
+      case "tr": (spec.typed && !(LS.noType() && spec.dir === "ef")) ? LS.exTranslateTyped(body, r) : LS.exTranslateTap(body, r); break;
       case "lt": LS.exListenTap(body, r); break;
-      case "th": LS.exTypeHeard(body, r); break;
+      case "th": LS.noType() ? LS.exListenTap(body, r) : LS.exTypeHeard(body, r); break;
       case "fb": LS.exFillBlank(body, r); break;
       case "mc": LS.exMultiChoice(body, r); break;
       case "img": LS.exImage(body, r); break;
@@ -410,7 +416,8 @@ const LS = {
       (spec.dir === "fe" ? LS.speakerRow(src, true) : '<div class="ex-prompt-row"><span class="ex-sentence"><b>' + U.esc(src) + "</b></span></div>") +
       '<div class="answer-zone" id="az"></div>' +
       '<div class="bank" id="bank"></div>' +
-      '<button class="btn btn-ghost small kb-toggle" id="kb-tog">Use keyboard</button>';
+      // typing the answer needs a keyboard for that script — hide when the answer is a no-type target (Korean)
+      (LS.noType() && lang === "es" ? "" : '<button class="btn btn-ghost small kb-toggle" id="kb-tog">Use keyboard</button>');
     const az = U.$("#az"), bank = U.$("#bank");
     const azTokens = () => U.$$(".tile", az).map(b => b.textContent);
     EX.bank(tgt, lang).forEach(tok => {
@@ -429,7 +436,8 @@ const LS = {
       };
       bank.appendChild(b);
     });
-    U.$("#kb-tog").onclick = () => { r.spec.typed = true; LS.renderEx(); };
+    const kbTog = U.$("#kb-tog");
+    if (kbTog) kbTog.onclick = () => { r.spec.typed = true; LS.renderEx(); };
     LS.footCheck(false);
     c.evalFn = () => {
       const ok = EX.checkTokens(azTokens(), tgt, alts);

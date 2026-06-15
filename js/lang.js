@@ -14,11 +14,13 @@ const LANG = {
     fr: { code: "fr", name: "French",     natName: "Français",   flag: "🇫🇷", tts: "fr-FR", voicePref: ["amélie", "amelie", "thomas", "audrey", "google français", "français", "french"], hello: "Bonjour !", welcome: "Bienvenue !", typeIn: "French" },
     de: { code: "de", name: "German",     natName: "Deutsch",    flag: "🇩🇪", tts: "de-DE", voicePref: ["anna", "katja", "petra", "google deutsch", "deutsch", "german"], hello: "Hallo!",    welcome: "Willkommen!",  typeIn: "German" },
     it: { code: "it", name: "Italian",    natName: "Italiano",   flag: "🇮🇹", tts: "it-IT", voicePref: ["alice", "elsa", "federica", "google italiano", "italiano", "italian"], hello: "Ciao!",     welcome: "Benvenuto!",   typeIn: "Italian" },
-    pt: { code: "pt", name: "Portuguese", natName: "Português",  flag: "🇧🇷", tts: "pt-BR", voicePref: ["luciana", "fernanda", "joana", "google português", "português", "portuguese"], hello: "Olá!",      welcome: "Bem-vindo!",   typeIn: "Portuguese" }
+    pt: { code: "pt", name: "Portuguese", natName: "Português",  flag: "🇧🇷", tts: "pt-BR", voicePref: ["luciana", "fernanda", "joana", "google português", "português", "portuguese"], hello: "Olá!",      welcome: "Bem-vindo!",   typeIn: "Portuguese" },
+    // Korean: non-Latin script. roman = show romanization in hints; noType = no free Hangul typing (tap/word-bank only)
+    ko: { code: "ko", name: "Korean", natName: "한국어", flag: "🇰🇷", tts: "ko-KR", voicePref: ["sun-hi", "sunhi", "heami", "yuna", "google 한국의", "korean", "한국"], hello: "안녕하세요!", welcome: "환영합니다!", typeIn: "Korean", roman: true, noType: true, agglut: true }
   },
 
   // display order in the picker
-  ORDER: ["es", "fr", "de", "it", "pt"],
+  ORDER: ["es", "fr", "de", "it", "pt", "ko"],
 
   def() { return LANG.DEFS[LANG.active] || LANG.DEFS.es; },
   name() { return LANG.def().name; },

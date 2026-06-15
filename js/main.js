@@ -1,6 +1,6 @@
 /* Charla — boot, tabs, install tip, service worker (global MAIN) */
 const MAIN = {
-  VERSION: "1.2.0",
+  VERSION: "1.3.0",
   TABS: ["learn", "practice", "leagues", "quests", "shop", "profile"],
 
   go(tab) {

@@ -369,3 +369,13 @@ b { font-weight: 800; }
 .lc-name small { color: #999; font-size: 13px; }
 .lc-tag { margin-left: auto; font-size: 11px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase; color: var(--green-d); }
 .lc-tag.soon { color: var(--muted); }
+
+/* romanization (non-Latin scripts, e.g. Korean) */
+.gl-t { display: flex; flex-direction: column; }
+.w-es { display: inline-flex; flex-direction: column; }
+.gl-rom { font-style: italic; color: #9a6b2f; font-weight: 600; font-size: 12px; margin-top: 1px; }
+.reading {
+  text-align: left; background: #fff7ed; border: 1px solid #ffe2bd; border-radius: 12px;
+  padding: 8px 12px; margin: 4px 0 10px; font-size: 14px; color: #9a6b2f; font-style: italic;
+}
+.reading b { font-style: normal; color: var(--orange); }
